@@ -1,0 +1,23 @@
+
+section{
+    background:white !important;
+    overflow: hidden;
+}
+
+input{
+    height: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 1025px) {
+    input{
+        height: 65px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn{
+        width:200px;
+        height: 50px;
+        margin:auto;
+    }
+}

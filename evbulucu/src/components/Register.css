@@ -1,0 +1,24 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Dosis:wght@800&family=Kaushan+Script&display=swap');
+
+.brand-font{
+  font-family: 'Bruno Ace SC', cursive;
+  color:#008080;
+}
+
+.brand-font:hover{
+  color:  #39ff14;
+}
+  
+  .login-form {
+    width: 400px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }

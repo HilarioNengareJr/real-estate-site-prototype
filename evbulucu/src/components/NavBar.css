@@ -1,0 +1,161 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Dosis:wght@800&family=Kaushan+Script&display=swap');
+/* Styles for screens with a maximum width of 768px */
+@media screen and (max-width: 768px) {
+  .line {
+    border-top: 1px solid orange !important;
+    margin: 2px;
+  }
+
+
+  .navbar{
+    height: 120px !important;
+  }
+
+  .no-display {
+    display: none;
+  }
+
+  
+  .show {
+    display:none;
+  }
+
+  
+}
+
+/* Styles for screens with a minimum width of 769px and a maximum width of 1024px */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .line {
+    border-top: 1px solid orange;
+    margin: 2px;
+  }
+
+  .no-display {
+    display: none;
+  }
+
+  .show {
+   display:none;
+  }
+}
+
+body {
+  background-color: #eee8e8 !important;
+}
+
+.navbar {
+  height: 5.625em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:hover{
+  border: 1px solid teal;
+  background:inherit;
+}
+
+.dropdown-toggle{
+  z-index: -1;
+}
+
+.navbar a{
+  color: #fff!important;
+}
+
+.navbar-dark{
+  color: white !important;
+}
+
+a:hover{
+  color: #007bff !important;
+  border-radius: 4px;
+}
+
+.dropdown-title > a.nav-link {
+  color: #302f2f;
+}
+
+.dropdown-item {
+  color: #116ab8;
+}
+
+.line {
+  border-top: 1px solid orange;
+  margin: 2px;
+}
+
+a{
+  text-decoration:none;
+}
+
+.btn{
+  width: 100px;
+  border-radius: 50px;
+}
+
+.brand-font{
+  font-family: 'Bruno Ace SC', cursive;
+  color:#008080;
+}
+
+.brand-font:hover{
+  color:  #39ff14;
+}
+
+/* Defaults */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display-4 {
+	font-weight: 700;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 8px 22px rgba(0, 0, 0, 0.1) #fff;
+	border-radius: 50px 25px;
+	border: solid 1px --dark;
+	cursor: pointer;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background-color: #0d6efd !important;
+	border-radius: 50px 0px;
+	margin: 5px;
+}
+
+.logo-img{
+  width:50px;
+  height:50px;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.login-modal-content div {
+  width:100% !important;
+  margin:auto;
+}
+
+.login-modal-content h1, .login-modal-content .footer-bottom{
+  display:none;
+}
+
+
+
+
