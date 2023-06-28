@@ -1,14 +1,28 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@600;800&family=Bruno+Ace+SC&family=Dosis:wght@800&family=Kaushan+Script&family=Urbanist&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@600;800&family=Bruno+Ace+SC&family=Dosis:wght@800&family=Kaushan+Script&family=Urbanist&display=swap');
+
 body {
   margin: 0;
   padding: 0;
-  background: white !important;
-  font-family: 'Inter', sans-serif !important;
+  background: #fff!important;
+  font-family: 'Advent Pro', sans-serif !important;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 800;
   line-height: 1.5;
   color: #212529;
 }
 
 .root {
   background: white;
+}
+
+@media only screen and (min-width:992px){
+  body {
+   
+    background: #fff!important;
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: 800;
+    color: #212529;
+  }
 }

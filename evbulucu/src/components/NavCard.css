@@ -1,0 +1,10 @@
+.navCard{
+    margin-top: -30px !important;
+    z-index: 1;
+  }
+
+  @media only screen and (min-width: 992px) {
+    .w-75{
+      width: 50% !important;
+    }
+  }

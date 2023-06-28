@@ -7,12 +7,12 @@ import Footer from './Footer';
 const Register = () => {
   return (
     <div className='container-fluid'>
-      <div className='row justify-content-center align-items-center mt-5 mb-5'>
+      <div className='row justify-content-center align-items-center mb-5'>
         <div className='col-lg-4 col-md-6 col-sm-8'>
           <form className='login-form bg-white p-4'>
             <div className='text-center mb-4 brand-font'>
             Student Rental
-            <div className="line"></div>
+            <div className="line w-50 m-auto"></div>
               <h1 className='h3 font-weight-normal mt-3'>Registration</h1>
             </div>
             <div className='form-group mb-3'>
@@ -54,7 +54,7 @@ const Register = () => {
           </form>
         </div>
       </div>
-      <Footer />
+     
     </div>
   );
 };

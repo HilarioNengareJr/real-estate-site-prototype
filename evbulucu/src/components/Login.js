@@ -12,7 +12,7 @@ const Login = () => {
                     <form className='login-form bg-white p-4'>
                         <div className='text-center mb-4 brand-font'>
                         Student Rental
-                    <div className="line"></div>
+                    <div className="line w-50 m-auto"></div>
                             <h1 className='h3 font-weight-normal mt-3'>Sign In</h1>
                         </div>
 
@@ -48,7 +48,6 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-          <Footer />
         </div>
     );
 };

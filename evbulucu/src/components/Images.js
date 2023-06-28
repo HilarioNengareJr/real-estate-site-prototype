@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './Images.css'; // Import the CSS file for styling
+import './Images.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronCircleLeft, faChevronCircleRight, faHeart, faShare } from '@fortawesome/free-solid-svg-icons';
+
 
 const Images = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const openModal = (index) => {
+    setIsModalOpen(true);
+    setSelectedImageIndex(index);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const accommodationImages = [
     '/images/pexels-photo-106399.jpeg',
     '/images/pexels-photo-186077.jpeg',
@@ -12,24 +27,70 @@ const Images = () => {
     '/images/pexels-photo-1475938.jpeg',
   ];
 
+  // Custom arrow component for the previous arrow
+  const CustomPrevArrow = (props) => {
+    const { onClick } = props;
+    return (
+      <div className="slick-arrow prev-arrow" onClick={onClick}>
+        <FontAwesomeIcon icon={faChevronCircleLeft} />
+      </div>
+    );
+  };
+
+  // Custom arrow component for the next arrow
+  const CustomNextArrow = (props) => {
+    const { onClick } = props;
+    return (
+      <div className="slick-arrow next-arrow" onClick={onClick}>
+        <FontAwesomeIcon icon={faChevronCircleRight} />
+      </div>
+    );
+  };
+
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true
+    arrows: true,
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
+  };
+
+  const imgStyle = {
+    width: '100%',
+    display: 'block',
   };
 
   return (
-    <div className="container-fluid mb-5">
+    <div>
       <Slider {...settings}>
         {accommodationImages.map((image, index) => (
-          <div className="d-flex justify-content-sm-center pt-4 mt-4" key={index}>
-            <img className='carousel-image' src={image} alt={`Image ${index}`} />
+          <div
+            className="slider image-container d-flex justify-content-sm-center"
+            key={index}
+            onClick={() => openModal(index)}
+          >
+            <img className="carousel-image img-fluid" src={image} alt={`Image ${index}`} style={imgStyle} />
+            
           </div>
         ))}
       </Slider>
+
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <img
+              className="modal-image"
+              src={accommodationImages[selectedImageIndex]}
+              alt={`Image ${selectedImageIndex}`}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

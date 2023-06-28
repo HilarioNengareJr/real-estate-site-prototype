@@ -40,6 +40,15 @@
   }
 }
 
+@media screen and (min-width: 769px){
+  .navbar{
+    width: 65%;
+    margin: 10px auto;
+    border-bottom-left-radius:25px;
+    border-top-right-radius: 25px;
+  }
+}
+
 body {
   background-color: #eee8e8 !important;
 }
@@ -93,7 +102,7 @@ a{
 }
 
 .btn{
-  width: 100px;
+  width: 200px;
   border-radius: 50px;
 }
 
@@ -120,7 +129,7 @@ h6,
 
 /* width */
 ::-webkit-scrollbar {
-	width: 15px;
+	width: 25px;
 }
 
 /* Track */
@@ -155,6 +164,7 @@ h6,
 .login-modal-content h1, .login-modal-content .footer-bottom{
   display:none;
 }
+
 
 
 
