@@ -5,11 +5,11 @@ import './NavCard.css';
 const NavCard = () => {
     return (
         <div className='navCard w-75 m-auto bg-dark text-center rounded-pill p-2'>
-        <Link className='p-1 text-white'>Map</Link>
+        <Link className='p-1 text-white' title='Google Maps'>Map</Link>
         <span className='text-success'>|</span>
-        <Link className='p-1 text-white'>Gallery</Link>
+        <Link to='./PictureFiles' className='p-1 text-white' title='Gallery'>Gallery</Link>
         <span className='text-success'>|</span>
-        <Link className='p-1 text-white'>Overview</Link>
+        <Link className='p-1 text-white' title="Amenities">Overview</Link>
     </div>
     );
 

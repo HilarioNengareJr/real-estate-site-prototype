@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Images.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleLeft, faChevronCircleRight, faHeart, faShare } from '@fortawesome/free-solid-svg-icons';
 
+export const accommodationImages = [
+  { src: '/images/pexels-photo-106399.jpeg', thumbnail: '/images/pexels-photo-106399.jpeg' },
+  { src: '/images/pexels-photo-186077.jpeg', thumbnail: '/images/pexels-photo-186077.jpeg' },
+  { src: '/images/pexels-photo-323780.jpeg', thumbnail: '/images/pexels-photo-323780.jpeg' },
+  { src: '/images/pexels-photo-1475938.jpeg', thumbnail: '/images/pexels-photo-1475938.jpeg' },
+];
 
 const Images = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,13 +28,7 @@ const Images = () => {
     setIsModalOpen(false);
   };
 
-  const accommodationImages = [
-    '/images/pexels-photo-106399.jpeg',
-    '/images/pexels-photo-186077.jpeg',
-    '/images/pexels-photo-323780.jpeg',
-    '/images/pexels-photo-1475938.jpeg',
-  ];
-
+ 
   // Custom arrow component for the previous arrow
   const CustomPrevArrow = (props) => {
     const { onClick } = props;
@@ -71,7 +73,7 @@ const Images = () => {
             key={index}
             onClick={() => openModal(index)}
           >
-            <img className="carousel-image img-fluid" src={image} alt={`Image ${index}`} style={imgStyle} />
+            <img className="carousel-image img-fluid" src={image.src} alt={`Image ${index}`} style={imgStyle} />
             
           </div>
         ))}
