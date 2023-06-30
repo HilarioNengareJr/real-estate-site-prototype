@@ -9,6 +9,7 @@ import NavCard from './NavCard';
 import './PostCard.css';
 import LikeShare from './LikeShare';
 
+
 const PostCard = () => {
   return (
     <div className='mt-4 border wide border-2 border-lg-only'>
