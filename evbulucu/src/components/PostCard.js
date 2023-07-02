@@ -29,16 +29,16 @@ const PostCard = () => {
             </span>
             </div>
                 <div className="listing-details text-muted font-weight-light">
-                  <ul className="list-inline">
-                    <li className="list-inline-item d-block">
+                  <ul className="list-unstyled">
+                    <li className="list-block-item ">
                       <FontAwesomeIcon icon={faMapMarkerAlt} className="detail-icon" />
                       <span className="m-2 detail-value">23 Alpay Basaran sokak</span>
                     </li>
-                    <li className="list-inline-item">
+                    <li className="list-block-item">
                       <FontAwesomeIcon icon={faBuilding} className="detail-icon" />
                       <span className="detail-value m-2">Studio - 2 beds! 1-2 Baths</span>
                     </li>
-                    <li className="list-inline-item">
+                    <li className="list-block-item">
                       <FontAwesomeIcon icon={faBed} className="detail-icon" />
                       <span className="detail-value m-2">2 rooms Available</span>
                     </li>

@@ -55,6 +55,10 @@
   font-weight: normal;
 }
 
+.list-block-item{
+  display: block;
+}
+
 @media (max-width: 889px) {
   .border-lg-only{
     border: none !important;

@@ -10,7 +10,7 @@ import { faFacebook, faLinkedIn, faInstagram } from '@fortawesome/free-brands-sv
 
 const Footer = () => {
     return ( 
-    <div className="footer-bottom py-3 bg-dark mt-3">
+    <div className="footer-bottom py-3 bg-dark my-3">
     <div className="container-fluid">
         <div className="row">
             <div className="col-md-12">
