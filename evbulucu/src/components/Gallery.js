@@ -20,12 +20,13 @@ const Gallery = () => {
   };
 
   return (
-    <div className='bg-dark'>
+    <div className='bg-dark '>
+    <span className='p-2 m-3 text-white'>Click on the image to expand.</span>
       <div className="row">
         <div className="col-lg-8 d-lg-flex justify-content-lg-around w-100 col-md-4 ">
           {accommodationImages.map((image, index) => (
             <div key={index} className="gallery-item" onClick={() => openLightbox(index)}>
-              <img src={image} alt={`Image ${index}`} className="gallery-image" />
+              <img src={image} alt={`Image ${index}`} className=" w-100 gallery-image" />
             </div>
           ))}
         </div>

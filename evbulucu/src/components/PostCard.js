@@ -30,7 +30,7 @@ const PostCard = () => {
             </div>
                 <div className="listing-details text-muted font-weight-light">
                   <ul className="list-inline">
-                    <li className="list-inline-item">
+                    <li className="list-inline-item d-block">
                       <FontAwesomeIcon icon={faMapMarkerAlt} className="detail-icon" />
                       <span className="m-2 detail-value">23 Alpay Basaran sokak</span>
                     </li>
