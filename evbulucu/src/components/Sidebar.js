@@ -7,14 +7,11 @@ const Sidebar = () => {
   return (
     <div className="bg-dark text-light p-3">
       <Nav className="flex-column">
-        <Nav.Link href="#" className="text-light">Link 1</Nav.Link>
-        <Nav.Link href="#" className="text-light">Link 2</Nav.Link>
-        <Nav.Link href="#" className="text-light">Link 3</Nav.Link>
-        <Nav.Link href="#" className="text-light">Link 4</Nav.Link>
-        <Nav.Link href="#" className="text-light">Link 5</Nav.Link>
-        <Nav.Link href="#" className="text-light">Link 6</Nav.Link>
-        <Nav.Link href="#" className="text-light">Link 7</Nav.Link>
-        <Nav.Link href="#" className="text-light">Link 8</Nav.Link>
+        <Nav.Link href="#" className="text-light">Guzelyurt</Nav.Link>
+        <Nav.Link href="#" className="text-light">Lefke</Nav.Link>
+        <Nav.Link href="#" className="text-light">Girne</Nav.Link>
+        <Nav.Link href="#" className="text-light">Magusa</Nav.Link>
+        <Nav.Link href="#" className="text-light">Nicosia</Nav.Link>
       </Nav>
 
       <hr />

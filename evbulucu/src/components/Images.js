@@ -9,10 +9,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleLeft, faChevronCircleRight, faHeart, faShare } from '@fortawesome/free-solid-svg-icons';
 
 export const accommodationImages = [
-  { src: '/images/pexels-photo-106399.jpeg', thumbnail: '/images/pexels-photo-106399.jpeg' },
-  { src: '/images/pexels-photo-186077.jpeg', thumbnail: '/images/pexels-photo-186077.jpeg' },
-  { src: '/images/pexels-photo-323780.jpeg', thumbnail: '/images/pexels-photo-323780.jpeg' },
-  { src: '/images/pexels-photo-1475938.jpeg', thumbnail: '/images/pexels-photo-1475938.jpeg' },
+ '/images/pexels-photo-106399.jpeg',
+ '/images/pexels-photo-186077.jpeg',
+ '/images/pexels-photo-323780.jpeg',
+ '/images/pexels-photo-1475938.jpeg',
 ];
 
 const Images = () => {
@@ -73,7 +73,7 @@ const Images = () => {
             key={index}
             onClick={() => openModal(index)}
           >
-            <img className="carousel-image img-fluid" src={image.src} alt={`Image ${index}`} style={imgStyle} />
+            <img className="carousel-image img-fluid" src={image} alt={`Image ${index}`} style={imgStyle} />
             
           </div>
         ))}
