@@ -18,48 +18,51 @@ const PostCard = () => {
           <Card className='card border-0 border-bottom rounded-0 shadow no-shadow'>
             <LikeShare />
             <div className='border no-border-lg'>
-            <Images />
+              <Images />
             </div>
             <NavCard />
             <Card.Body>
-            <div className="listing-details-heading font-weight-bold text-center"> 
-            <span className='bg'><h2 className='text-muted p-3'>$200/month</h2></span>
-            <span className='city text-muted d-flex justify-content-start'>
-            <h5>Guzelyurt</h5>
-            </span>
-            </div>
-                <div className="listing-details text-muted font-weight-light">
-                  <ul className="list-unstyled">
-                    <li className="list-block-item ">
-                      <FontAwesomeIcon icon={faMapMarkerAlt} className="detail-icon" />
-                      <span className="m-2 detail-value">23 Alpay Basaran sokak</span>
-                    </li>
-                    <li className="list-block-item">
-                      <FontAwesomeIcon icon={faBuilding} className="detail-icon" />
-                      <span className="detail-value m-2">Studio - 2 beds! 1-2 Baths</span>
-                    </li>
-                    <li className="list-block-item">
-                      <FontAwesomeIcon icon={faBed} className="detail-icon" />
-                      <span className="detail-value m-2">2 rooms Available</span>
-                    </li>
-                  </ul>
+              <div className="listing-details-heading font-weight-bold text-center">
+                <div class="card-price">
+                  <strong>$34,900</strong>/Month
                 </div>
+                <span className='city text-muted d-flex justify-content-start'>
+                  <h5>Guzelyurt</h5>
+                </span>
+              </div>
+              <div className="listing-details text-muted font-weight-light">
+                <ul className="list-unstyled">
+                  <li className="list-block-item ">
+                    <FontAwesomeIcon icon={faMapMarkerAlt} className="detail-icon" />
+                    <span className="m-2 detail-value">23 Alpay Basaran sokak</span>
+                  </li>
+                  <li className="list-block-item">
+                    <FontAwesomeIcon icon={faBuilding} className="detail-icon" />
+                    <span className="detail-value m-2">Studio - 2 beds! 1-2 Baths</span>
+                  </li>
+                  <li className="list-block-item">
+                    <FontAwesomeIcon icon={faBed} className="detail-icon" />
+                    <span className="detail-value m-2">2 rooms Available</span>
+                  </li>
+                </ul>
+              </div>
 
-                <div className="d-flex justify-content-center">
-                  <button className='btn btn-primary m-2'>
-                    <span className='m-1'>
-                      <FontAwesomeIcon icon={faUser} className="button-icon" />
-                    </span>
-                    Request Tour
-                  </button>
-                  <button className='btn btn-outline-primary m-2'>
-                    <span className='m-1'>
-                      <FontAwesomeIcon icon={faPhone} className="button-icon" />
-                    </span>
-                    Call
-                  </button>
-                </div>
+              <div className="d-flex justify-content-center">
+                <button className='btn btn-primary m-2'>
+                  <span className='m-1'>
+                    <FontAwesomeIcon icon={faUser} className="button-icon" />
+                  </span>
+                  Request Tour
+                </button>
+                <button className='btn btn-outline-primary m-2'>
+                  <span className='m-1'>
+                    <FontAwesomeIcon icon={faPhone} className="button-icon" />
+                  </span>
+                  Call
+                </button>
+              </div>
             </Card.Body>
+
           </Card>
         </Col>
       </Row>

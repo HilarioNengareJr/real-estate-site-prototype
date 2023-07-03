@@ -20,7 +20,7 @@ const NavCard = () => {
       <Link className='p-1 text-white' title='Google Maps'>Map</Link>
       <span className='text-success'>|</span>
       <Link className='p-1 text-white gallery' onClick={openModal} title='Gallery'>Gallery</Link>
-      <span className='text-success'>|</span>
+      <span className='text-success display-none'>|</span>
       <Link className='p-1 text-white' title="Amenities">Overview</Link>
 
       {isOpen && (
