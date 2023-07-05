@@ -1,52 +1,49 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowForward } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faHome } from '@fortawesome/free-solid-svg-icons';
 import './ServiceSection.css';
 
 const ServiceSection = () => {
   return (
     <section className="service" id="service">
       <div className="container">
-        <p className="section-subtitle">Our Services</p>
-        <h2 className="h2 section-title">Our Main Focus</h2>
-        <ul className="service-list">
-          <li>
-            <div className="service-card">
+        <p className="text-center text-primary">Our Services</p>
+        <h2 className="text-center p-3">Our Main Focus</h2>
+        <div className="row">
+          <div className="col-md-6">
+            <div className="service-card my-3">
               <div className="card-icon">
-                
+              <FontAwesomeIcon icon={faHome} className="house-icon" />
               </div>
               <h3 className="h3 card-title">
-                <a href="#">Buy a home</a>
+                <a href="#">Rent A Place</a>
               </h3>
               <p className="card-text">
-                over 1 million+ homes for sale available on the website, we can match you with a house you will want
+                Over 1 thousand+ homes for rent available in Northern Cyprus, we can match you with a house you will want
                 to call home.
               </p>
               <a href="#" className="card-link">
-                <span>Find A Home</span>
-                
+                <span>Find your next home</span>
               </a>
             </div>
-          </li>
-          <li>
-            <div className="service-card">
-              <div className="card-icon">
-                
+          </div>
+          <div className="col-md-6">
+            <div className="service-card my-3 ">
+            <div className="card-icon">
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="map-icon" />
               </div>
               <h3 className="h3 card-title">
-                <a href="#">Buy a home</a>
+                <a href="#">List a Place</a>
               </h3>
               <p className="card-text">
-                over 1 million+ homes for sale available on the website, we can match you with a house you will want
-                to call home.
+                Many students are actively searching for space to settle down.
               </p>
               <a href="#" className="card-link">
-                <span>Find A Home</span>
-                
+                <span>Find your next tenant</span>
               </a>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </section>
   );

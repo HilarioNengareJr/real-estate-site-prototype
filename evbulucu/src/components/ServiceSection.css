@@ -28,6 +28,20 @@
     margin-inline: auto;
     margin-bottom: 20px;
   }
+
+.house-icon,
+.map-icon {
+  display: flex;
+  font-size: 1.5rem; 
+  color: #fff; 
+  background-color: teal;
+  border-radius: 25px; 
+  width: 100%;
+  padding: 1rem; 
+  align-items: center;
+  justify-content: center;
+}
+
   
   .service-card .card-title { margin-bottom: 15px; }
   

@@ -35,7 +35,7 @@
   font-size: 18px;
   margin-right: 10px;
   border-radius: 50%;
-  background-color: #007bff; /* Primary background color */
+  background-color: var(--opal); /* Primary background color */
   color: #fff; /* White icon color */
   width: 25px;
   height: 25px;

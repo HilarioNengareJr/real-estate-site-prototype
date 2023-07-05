@@ -79,7 +79,7 @@
 
 
 html {
-  font-family: var(--ff-nunito-sans);
+  font-family:'Open Sans', sans-serif !important;;
   scroll-behavior: smooth;
 }
 
@@ -87,12 +87,25 @@ body {
   margin: 0;
   padding: 0;
   background: #fff!important;
+  font-family: 'Open Sans', sans-serif !important;
   font-size: 1rem;
   font-weight: 800;
   line-height: 1.5;
   color: #212529;
  
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display-4 {
+  color: var(--cadet);
+	font-weight: 700;
+}
+
 
 .root {
   background: white;
