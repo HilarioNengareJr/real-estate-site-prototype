@@ -4,9 +4,17 @@
 \*-----------------------------------*/
 
 .service {
-    background: var(--cultured-2);
+    background: var(--cultured-2) !important;
     padding-block: var(--section-padding);
   }
+
+.service-h{
+  color: var(--orange-soda) !important;
+}
+
+.height{
+  height: 100%;
+}
   
   .service-list {
     display: flex;

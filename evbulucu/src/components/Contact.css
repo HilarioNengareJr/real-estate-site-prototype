@@ -4,6 +4,11 @@ section{
     overflow: hidden;
 }
 
+.contact{
+    color: var(--orange-soda);
+    font-weight: 700;
+}
+
 input{
     height: 50px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);

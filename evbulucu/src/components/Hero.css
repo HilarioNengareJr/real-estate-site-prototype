@@ -7,6 +7,10 @@
 	z-index: 2;
 	overflow: hidden;
   }
+
+  .display-4{
+	font-weight: 700;
+  }
   
   .hero::after {
 	content: "";

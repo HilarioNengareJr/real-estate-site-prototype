@@ -13,7 +13,8 @@ const ContactInfo = () => {
           <div className="container-fluid p-5">
             <div className="row">
               <div className="col-md-8 mx-auto text-center">
-                <h6 className="text-primary p-3">Contact</h6>
+                <h6 className="contact">Contact</h6>
+                <hr className='w-25 mx-auto'/>
                 <h1>Get In Touch</h1>
                 <p className="p-3">Leave your thoughts down below please.</p>
               </div>
@@ -33,14 +34,13 @@ const ContactInfo = () => {
                   <textarea className="form-control" cols="30" id="" name="" placeholder="Enter Message"
                     rows="5"></textarea>
                 </div>
-                <div className="col-md-10 d-grid">
-                  <button className="btn btn-primary">Contact</button>
+                <div className="col-md-10 d-grid d-flex justify-content-center">
+                  <button className="btn btn-primary ">Contact</button>
                 </div>
               </form>
             </div>
           </div>
       </section>
-
   );
 };
 

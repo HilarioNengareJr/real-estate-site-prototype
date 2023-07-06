@@ -8,6 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "bootstrap": "^5.2.0",
     "carousel": "^0.0.3",
+    "ionicons": "^7.1.2",
     "path": "^0.12.7",
     "postcss-cli": "^10.1.0",
     "react": "^18.0.0",

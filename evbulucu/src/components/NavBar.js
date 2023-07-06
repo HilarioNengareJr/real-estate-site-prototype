@@ -50,13 +50,19 @@ const NavBar = () => {
           <Navbar.Toggle aria-controls="navbarNav" onClick={handleMenuToggle} />
           <Navbar.Collapse id="navbarNav">
             <Nav className="mx-auto">
-              <Nav.Link className="nav-item w-100 m-3" href="#" active>
-                Main
+              <Nav.Link className="nav-item w-100 m-3 d-flex justify-content-center no-wrap" href="#" active>
+                Home
               </Nav.Link>
               <Nav.Link className="nav-item m-3">
-              <Link to="listings">
-                Listings
-              </Link>
+                <Link to="listings">
+                  Listings
+                </Link>
+              </Nav.Link>
+              <Nav.Link href="#service" className="nav-item m-3">
+                Services
+              </Nav.Link>
+              <Nav.Link className="nav-item w-100 m-3 d-flex justify-content-center" href="#contactInfo" active>
+                Contact
               </Nav.Link>
               <Nav.Link className="nav-item m-3" onClick={handleSignupToggle}>
                 Register
@@ -70,7 +76,7 @@ const NavBar = () => {
                     className="btn sign-in btn-primary"
                     onClick={handleLoginToggle}
                   >
-                      Log In
+                    Log In
                   </button>
                 </Nav.Link>
               </div>
@@ -79,20 +85,16 @@ const NavBar = () => {
         </Container>
       </Navbar>
 
-      <Modal className="text-center" show={showMenuModal} onHide={handleMenuModalClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Menu</Modal.Title>
-        </Modal.Header>
+      <Modal className="text-center modal-card mx-auto d-flex justify-content-center border-0" show={showMenuModal} onHide={handleMenuModalClose} centered>
         <Modal.Body>
           <Nav className="flex-column">
             <Nav.Link href="#" onClick={handleMenuModalClose}>
-              Home
+              Home page
             </Nav.Link>
             <Nav.Link onClick={handleMenuModalClose}>
-            <Link to="listings">
+              <Link to="listings">
                 Listings
-            </Link>
-            
+              </Link>
             </Nav.Link>
             <Nav.Link href="/register" onClick={handleMenuModalClose}>
               Register
@@ -102,13 +104,13 @@ const NavBar = () => {
         <Modal.Footer className="d-flex justify-content-center">
           <Link to="/login">
             <button type="button" className="btn sign-in btn-primary btn-lg">
-            <FontAwesomeIcon icon={faSignInAlt} />
+              sign in
             </button>
           </Link>
         </Modal.Footer>
       </Modal>
 
-      <Modal className="text-center" show={showLoginModal} onHide={handleLoginModalClose} centered>
+      <Modal className="text-center d-flex justify-content-center w-100" show={showLoginModal} onHide={handleLoginModalClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Log In</Modal.Title>
         </Modal.Header>
@@ -119,7 +121,7 @@ const NavBar = () => {
         </Modal.Body>
       </Modal>
 
-      <Modal className="text-center" show={showSignupModal} onHide={handleSignupModalClose} centered>
+      <Modal className="text-center d-flex justify-content-center w-100" show={showSignupModal} onHide={handleSignupModalClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Sign Up</Modal.Title>
         </Modal.Header>

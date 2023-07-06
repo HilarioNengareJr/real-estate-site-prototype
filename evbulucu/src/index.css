@@ -95,6 +95,13 @@ body {
  
 }
 
+.modal-card{
+  width: 400px;
+  height: auto;
+  margin-inline: auto!important;
+  margin-block-start: 110px;
+}
+
 h1,
 h2,
 h3,
@@ -103,9 +110,29 @@ h5,
 h6,
 .display-4 {
   color: var(--cadet);
-	font-weight: 700;
 }
 
+.btn, button{
+  background: var(--orange-soda);
+  border: none;
+  color: #fff;
+}
+
+.btn:hover{
+  background: var(--yellow-green);
+}
+
+button:hover{
+  background: var(--yellow-green);
+}
+
+.btn:focus{
+  background: var(--yellow-green);
+}
+
+button:focus{
+  background: var(--yellow-green);
+}
 
 .root {
   background: white;

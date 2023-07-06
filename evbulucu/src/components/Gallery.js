@@ -20,7 +20,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className='bg-dark '>
+    <div className='bg-white gallery-card '>
     <span className='p-2 m-3 text-white'>Click on the image to expand.</span>
       <div className="row">
         <div className="col-lg-8 d-lg-flex justify-content-lg-around w-100 col-md-4 ">

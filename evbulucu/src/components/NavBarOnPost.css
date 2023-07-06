@@ -1,12 +1,10 @@
 @media screen and (min-width: 769px) {
     .navbarOnPost {
-      width: 65%;
-      border-radius: 0 25px;
       padding-block-start: 10px;
       margin-inline: auto;
       display: flex;
-      justify-content: center; /* Added to center the form control */
-      align-items: center; /* Added to center the form control */
+      justify-content: center; 
+      align-items: center; 
     }
   
     .this .form-control {
@@ -14,6 +12,12 @@
       height: 50px;
     }
 
+  }
+
+  @media (max-width:768px){
+    .dnone{
+      display: none !important;
+    }
   }
 
   #navbarOnPost {

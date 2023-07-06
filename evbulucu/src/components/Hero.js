@@ -11,7 +11,7 @@ const Hero = () => {
   const strings = ['Guzelyurt', 'Lefke', 'Nicosia', 'Girne'];
 
   return (
-    <div className="hero vh-100 d-flex align-items-center mb-3 container-fluid" id="home">
+    <div className="hero vh-100 d-flex align-items-center container-fluid" id="home">
       <div className="container">
         <div className="row d-flex justify-content-center">
           <div className="d-flex justify-content-center col-md-12">

@@ -7,7 +7,7 @@ import { faMapMarkerAlt, faBuilding, faBed, faUser, faPhone } from '@fortawesome
 import Images from './Images';
 import NavCard from './NavCard';
 import './PostCard.css';
-import LikeShare from './LikeShare';
+
 
 
 const PostCard = () => {
@@ -16,7 +16,6 @@ const PostCard = () => {
       <Row className="justify-content-center d-flex ">
         <Col xs={12} md={8} lg={12}>
           <Card className='card border-0 border-bottom rounded-0 shadow no-shadow'>
-            <LikeShare />
             <div className='border no-border-lg'>
               <Images />
             </div>
