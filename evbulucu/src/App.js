@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
-import Gallery from './components/Gallery';
 import Register from './components/Register';
 import Listing from './components/Listing';
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/listings' element={<Listing />} />
+        
       </Routes>
     </Router>
   );

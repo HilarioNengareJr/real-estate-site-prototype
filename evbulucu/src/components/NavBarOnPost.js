@@ -39,8 +39,10 @@ const NavBarOnPost = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={handleMenuModalToggle} />
           <Nav className="mx-auto dnone">
-              <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" href="#" active>
-                Home
+              <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" active>
+                <Link to='/'>
+                  Home
+                </Link>
               </Nav.Link>
               <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" href="#" active>
                 List
@@ -63,8 +65,10 @@ const NavBarOnPost = () => {
       <Modal show={isOpenModal} onHide={closeModal} className='modal-card d-flex justify-content-center text-center w-100'>
         <Modal.Body>
           <Nav className="flex-column text-center px-3">
-            <Nav.Link href="#" onClick={closeModal}>
-              Home 
+            <Nav.Link onClick={closeModal}>
+              <Link to='/'>
+                Home
+              </Link>
             </Nav.Link>
             <Nav.Link href="#" onClick={closeModal}>
               Add Listing

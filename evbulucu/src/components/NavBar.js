@@ -88,11 +88,13 @@ const NavBar = () => {
       <Modal className="text-center modal-card mx-auto d-flex justify-content-center border-0" show={showMenuModal} onHide={handleMenuModalClose} centered>
         <Modal.Body>
           <Nav className="flex-column">
-            <Nav.Link href="#" onClick={handleMenuModalClose}>
-              Home page
+            <Nav.Link onClick={handleMenuModalClose}>
+            <Link to='/'>
+            Home 
+            </Link>  
             </Nav.Link>
             <Nav.Link onClick={handleMenuModalClose}>
-              <Link to="listings">
+              <Link to="/listings">
                 Listings
               </Link>
             </Nav.Link>

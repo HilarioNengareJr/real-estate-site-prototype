@@ -18,3 +18,17 @@
       display:none;
     }
   }
+
+  .detail-icon {
+    font-size: 18px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: var(--opal); 
+    color: #fff; 
+    height: 25px;
+    display: absolute;
+    align-items: center;
+    justify-content: center;
+    padding:5px;
+  }
+  
