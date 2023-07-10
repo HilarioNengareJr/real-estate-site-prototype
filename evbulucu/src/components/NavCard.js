@@ -5,6 +5,8 @@ import { faWifi, faParking, faSwimmingPool, faUtensils, faBed, faBus, faSchool, 
 import './NavCard.css';
 import Gallery from './Gallery';
 
+
+
 const NavCard = () => {
   const [isOpen, setIsOpenModal] = useState(false);
   const [isOpenOverview, setIsOpenOverview] = useState(false);
