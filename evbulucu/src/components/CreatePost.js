@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './CreatePost.css';
 
-const PostingComponent = () => {
+const CreatePost = () => {
 
     const [imageFiles, setImageFiles] = useState([]);
     const [details, setDetails] = useState({
@@ -33,24 +33,29 @@ const PostingComponent = () => {
 
     return (
         <div className='container'>
-            <h2>Create a New Posting</h2>
-            <form onSubmit={handleSubmit}>
+        <div className='row'>
+        <h1 className='text-center p-3'>New Listing</h1>
+        <div className='col-6 ms-3'>
+            
+            <form className='upload-form ' onSubmit={handleSubmit}>
                 <div>
-                    <label>Upload Images:</label>
-                    <input type="file" multiple onChange={handleFileChange} />
+                    <label for='images'>Upload Images: </label>
+                    <input name='images' className='shadow-none' type="file" multiple onChange={handleFileChange} />
                 </div>
-                <div>
-                    <label>WiFi:</label>
-                    <input
+                <hr className='w-100 mx-auto'/>
+                <div className='m-3'>
+                    <label for='wifi'>WiFi: </label>
+                    <input className='shadow-none'
                         type="checkbox"
                         name="wifi"
                         checked={details.wifi}
                         onChange={handleInputChange}
                     />
                 </div>
-                <div>
-                    <label>Bus Stop Distance:</label>
-                    <input
+                <hr className='w-100 mx-auto'/>
+                <div className='m-3'>
+                    <label for='busStopDistance'>Bus Stop Distance: </label>
+                    <input className='shadow-none border-1 rounded p-3'
                         type="text"
                         name="busStopDistance"
                         value={details.busStopDistance}
@@ -58,12 +63,14 @@ const PostingComponent = () => {
                     />
                 </div>
 
-
-
-                <button type="submit">Submit</button>
+                <hr className='w-100 mx-auto'/>
+                <label>Parking</label>
+                <button className='btn w-25 p-3 mx-auto' type="submit">okay</button>
             </form>
+            </div>
+            </div>
         </div>
     );
 };
 
-export default PostingComponent;
+export default CreatePost;

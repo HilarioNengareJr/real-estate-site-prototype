@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { Navbar, Container, Form, FormControl, Modal, Nav} from 'react-bootstrap';
+import { Navbar, Container, Form, FormControl, Modal, Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -33,24 +33,26 @@ const NavBarOnPost = () => {
     <div>
       <Navbar id="navbarOnPost" className="navbarOnPost d-flex justify-content-center fixed-top bg-dark navbar-dark" expand="lg">
         <Container>
-        <Navbar.Brand className="ml-auto dnone brand-font">
+          <Navbar.Brand className="ml-auto dnone brand-font">
             Student Rental
             <div className="line"></div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={handleMenuModalToggle} />
           <Nav className="mx-auto dnone">
-              <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" active>
-                <Link to='/'>
-                  Home
-                </Link>
-              </Nav.Link>
-              <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" href="#" active>
-                List
-              </Nav.Link>
-              <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" href="#" active>
-                Profile
-              </Nav.Link>
-            </Nav>
+            <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" active>
+              <Link to='/'>
+                Home
+              </Link>
+            </Nav.Link>
+            <Nav.Link className="nav-item w-100 m-3 text-center no-wrap " active>
+              <Link to='/create-post' className='d-inline'>
+                Add Listing
+              </Link>
+            </Nav.Link>
+            <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" href="#" active>
+              Profile
+            </Nav.Link>
+          </Nav>
           <Form inline className="mr-auto this">
             <div className="position-relative">
               <FormControl type="text" placeholder="Search Town, City ..." className="mr-sm-2" />
@@ -61,7 +63,7 @@ const NavBarOnPost = () => {
           </Form>
         </Container>
       </Navbar>
-      
+
       <Modal show={isOpenModal} onHide={closeModal} className='modal-card d-flex justify-content-center text-center w-100'>
         <Modal.Body>
           <Nav className="flex-column text-center px-3">
@@ -70,8 +72,10 @@ const NavBarOnPost = () => {
                 Home
               </Link>
             </Nav.Link>
-            <Nav.Link href="#" onClick={closeModal}>
-              Add Listing
+            <Nav.Link onClick={closeModal}>
+              <Link to='/create-post'>
+                Add Listing
+              </Link>
             </Nav.Link>
           </Nav>
         </Modal.Body>
