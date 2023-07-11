@@ -40,10 +40,8 @@ const CreatePost = () => {
 
     return (
         <div className='container'>
-            <Navbar id="navbarOnPost" className="navbarOnPost d-flex justify-content-center fixed-top bg-dark navbar-dark" expand="lg">
-
+            <Navbar id="navbarOnPost" className="navbarOnPost d-flex justify-content-center fixed-top bg-dark navbar-dark mb-3" expand="lg">
                 <h1 className='text-center new-listing'>New Listing</h1>
-
             </Navbar>
             <div className='row mx-auto'>
 
