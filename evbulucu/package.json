@@ -25,6 +25,7 @@
     "typed.js": "^2.0.16",
     "webpack": "^5.68.0"
   },
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

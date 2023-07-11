@@ -1,6 +1,10 @@
 {
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "google-maps-react": "^2.0.6"
-  }
+    "name": "homefinder",
+    "version": "1.0.0",
+    "main": "server/app.js",
+    "dependencies": {
+      "@fortawesome/fontawesome-svg-core": "^6.4.0",
+      "google-maps-react": "^2.0.6"
+    }
+  
 }

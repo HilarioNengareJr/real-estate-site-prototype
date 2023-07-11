@@ -40,129 +40,126 @@ const CreatePost = () => {
 
     return (
         <div className='container'>
-            <Navbar id="navbarOnPost" className="navbarOnPost d-flex justify-content-center fixed-top bg-dark navbar-dark mb-3" expand="lg">
-                <h1 className='text-center new-listing'>New Listing</h1>
-            </Navbar>
-            <div className='row mx-auto'>
-
-                <div className='col-lg-6 col-12 ms-3'>
-                    <form className='upload-form ' onSubmit={handleSubmit}>
-                        <div className='row'>
-                            <div className='col-lg-6'>
-                                <span className='m-4'><h3>Gallery</h3></span>
-                            </div>
-                            <div className='col-6'>
-                                <label htmlFor='images'>Upload Images:</label>
-                            </div>
-                            <div className='col-6'>
-                                <input
-                                    name='images'
-                                    className='shadow-none'
-                                    type="file"
-                                    multiple
-                                    onChange={handleFileChange}
-                                />
-                            </div>
-                        </div>
-                        <span className='m-4'><h3>Address</h3></span>
-                        <span className='m-4'><h3>Overview</h3></span>
-                        <div className='row'>
-                            <div className='col-6'>
-                                <label htmlFor='wifi'>WiFi:</label>
-                            </div>
-                            <div className='col-6'>
-                                <input
-                                    className='shadow-none'
-                                    type="checkbox"
-                                    name="wifi"
-                                    checked={details.wifi}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                        </div>
-                        <hr className='' />
-                        <div className='row'>
-                            <div className='col-6'>
-                                <label htmlFor='busStopDistance'>Bus Stop Distance:</label>
-                            </div>
-                            <div className='col-6'>
-                                <input
-                                    className='shadow-none w-75 border-1 rounded p-3'
-                                    type="text"
-                                    name="busStopDistance"
-                                    value={details.busStopDistance}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                        </div>
-                        <hr className='' />
-                        <div className='row'>
-                            <div className='col-6'>
-                                <label htmlFor='running-water'>Running water:</label>
-                            </div>
-                            <div className='col-6'>
-                                <input
-                                    className='shadow-none'
-                                    type='checkbox'
-                                    name='running-water'
-                                    value={details.runningWater}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                        </div>
-                        <hr className='' />
-                        <div className='row'>
-                            <div className='col-6'>
-                                <label htmlFor='parking'>Parking:</label>
-                            </div>
-                            <div className='col-6'>
-                                <input
-                                    className='shadow-none'
-                                    type='checkbox'
-                                    name='parking'
-                                    value={details.parking}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                        </div>
-                        <hr className='' />
-                        <div className='row'>
-                            <div className='col-6'>
-                                <label htmlFor='school'>School:</label>
-                            </div>
-                            <div className='col-6'>
-                                <input
-                                    className='shadow-none'
-                                    type='checkbox'
-                                    name='school'
-                                    value={details.school}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                        </div>
-                        <hr className='' />
-                        <div className='row'>
-                            <div className='col-6'>
-                                <label htmlFor='rooms'>Rooms:</label>
-                            </div>
-                            <div className='col-6'>
-                                <input
-                                    className='shadow-none'
-                                    type='checkbox'
-                                    name='rooms'
-                                    value={details.rooms}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                        </div>
-                    </form>
+          <div className='row p-3 mx-auto'>
+           
+            <div className='col-lg-6 col-12 ms-3'>
+              <form className='upload-form'>
+                <div className='mb-4'>
+                  <h3 className='section-title'>Gallery</h3>
+                  <div className='input-group'>
+                    <div className='custom-file'>
+                      <input
+                        name='images'
+                        className='custom-file-input shadow-none'
+                        type="file"
+                        multiple
+                        onChange={handleFileChange}
+                      />
+                      <label className='custom-file-label' htmlFor='images'>
+                        Upload Images
+                      </label>
+                    </div>
+                  </div>
                 </div>
+                <div className='mb-4'>
+                  <h3 className='section-title'>Address</h3>
+               
+                </div>
+                <div className='mb-4'>
+                  <h3 className='section-title'>Overview</h3>
+                  <div className='form-check'>
+                    <input
+                      className='form-check-input'
+                      type='checkbox'
+                      id='wifi'
+                      name='wifi'
+                      checked={details.wifi}
+                      onChange={handleInputChange}
+                    />
+                    <label className='form-check-label' htmlFor='wifi'>
+                      WiFi
+                    </label>
+                  </div>
+                  <div className='form-check'>
+                    <input
+                      className='form-check-input'
+                      type='checkbox'
+                      id='busStopDistance'
+                      name='busStopDistance'
+                      checked={details.busStopDistance}
+                      onChange={handleInputChange}
+                    />
+                    <label className='form-check-label' htmlFor='busStopDistance'>
+                      Bus Stop Distance
+                    </label>
+                    {/* Input field for bus stop distance */}
+                  </div>
+                  {/* Other overview fields */}
+                </div>
+                <div className='mb-4'>
+                  <h3 className='section-title'>Facilities</h3>
+                  <div className='form-check'>
+                    <input
+                      className='form-check-input'
+                      type='checkbox'
+                      id='running-water'
+                      name='running-water'
+                      checked={details.runningWater}
+                      onChange={handleInputChange}
+                    />
+                    <label className='form-check-label' htmlFor='running-water'>
+                      Running Water
+                    </label>
+                  </div>
+                  <div className='form-check'>
+                    <input
+                      className='form-check-input'
+                      type='checkbox'
+                      id='parking'
+                      name='parking'
+                      checked={details.parking}
+                      onChange={handleInputChange}
+                    />
+                    <label className='form-check-label' htmlFor='parking'>
+                      Parking
+                    </label>
+                  </div>
+                  <div className='form-check'>
+                    <input
+                      className='form-check-input'
+                      type='checkbox'
+                      id='school'
+                      name='school'
+                      checked={details.school}
+                      onChange={handleInputChange}
+                    />
+                    <label className='form-check-label' htmlFor='school'>
+                      School
+                    </label>
+                  </div>
+                  <div className='form-check'>
+                    <input
+                      className='form-check-input'
+                      type='checkbox'
+                      id='rooms'
+                      name='rooms'
+                      checked={details.rooms}
+                      onChange={handleInputChange}
+                    />
+                    <label className='form-check-label' htmlFor='rooms'>
+                      Rooms
+                    </label>
+                  </div>
+                </div>
+                <div className='d-flex justify-content-center text-center mb-3'>
+                  <button className='btn btn-primary' type='submit'>Submit</button>
+                </div>
+              </form>
             </div>
-            <div className='d-flex justify-content-center text-center mb-3'>
-                <button className='btn p-3 mx-auto' type="submit">okay</button>
-            </div>
+          </div>
         </div>
-    );
+      );
+      
 };
 
 export default CreatePost;
