@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import './NavBarOnPost.css';
+
 const NavBarOnPost = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 

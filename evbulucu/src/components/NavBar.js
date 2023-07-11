@@ -6,9 +6,7 @@ import './NavBar.css';
 import { Link } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
-import Listing from './Listing';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 const NavBar = () => {
   const [showMenuModal, setShowMenuModal] = useState(false);
@@ -51,7 +49,9 @@ const NavBar = () => {
           <Navbar.Collapse id="navbarNav">
             <Nav className="mx-auto">
               <Nav.Link className="nav-item w-100 m-3 d-flex justify-content-center no-wrap" href="#" active>
-                Home
+              <Link to="/create-post">
+                  Enlist
+                </Link>
               </Nav.Link>
               <Nav.Link className="nav-item m-3">
                 <Link to="listings">
@@ -89,8 +89,8 @@ const NavBar = () => {
         <Modal.Body>
           <Nav className="flex-column">
             <Nav.Link onClick={handleMenuModalClose}>
-            <Link to='/'>
-            Home 
+            <Link to='/create-post'>
+            Enlist
             </Link>  
             </Nav.Link>
             <Nav.Link onClick={handleMenuModalClose}>
