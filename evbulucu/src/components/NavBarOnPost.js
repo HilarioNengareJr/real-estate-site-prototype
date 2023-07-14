@@ -47,7 +47,7 @@ const NavBarOnPost = () => {
             </Nav.Link>
             <Nav.Link className="nav-item w-100 m-3 text-center no-wrap " active>
               <Link to='/create-post' className='d-inline'>
-                Add Listing
+                Enlist
               </Link>
             </Nav.Link>
             <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" href="#" active>
@@ -75,7 +75,7 @@ const NavBarOnPost = () => {
             </Nav.Link>
             <Nav.Link onClick={closeModal}>
               <Link to='/create-post'>
-                Add Listing
+               Enlist
               </Link>
             </Nav.Link>
           </Nav>

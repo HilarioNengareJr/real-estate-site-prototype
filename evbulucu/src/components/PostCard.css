@@ -35,8 +35,8 @@
   font-size: 18px;
   margin-right: 10px;
   border-radius: 50%;
-  background-color: var(--opal); /* Primary background color */
-  color: #fff; /* White icon color */
+  background-color:#fff; 
+  color: var(--orange-soda); 
   width: 25px;
   height: 25px;
   display: absolute;

@@ -51,7 +51,7 @@ const PostCard = () => {
                   <span className='m-1'>
                     <FontAwesomeIcon icon={faUser} className="button-icon" />
                   </span>
-                  Request Tour
+                  WhatsApp
                 </button>
                 <button className='btn btn-outline-primary m-2'>
                   <span className='m-1'>
