@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const path = require('path');
 
@@ -8,7 +10,6 @@ const buildPath = path.join(__dirname, '../evbulucu/build');
 
 app.use(express.static(buildPath));
 
-// added buildpath
 app.get('/', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
