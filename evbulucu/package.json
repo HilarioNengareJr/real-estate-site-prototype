@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@formspree/react": "^2.4.4",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -25,7 +26,6 @@
     "typed.js": "^2.0.16",
     "webpack": "^5.68.0"
   },
-
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
