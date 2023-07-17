@@ -56,6 +56,9 @@ const NavBarSupport = () => {
       >
         <Modal.Body>
           <Nav className="flex-column">
+          <Nav.Link className="nav-item m-3">
+                <Link to="/">Home</Link>
+              </Nav.Link>
             <Nav.Link>
               <Link to="/listings">Listings</Link>
             </Nav.Link>
