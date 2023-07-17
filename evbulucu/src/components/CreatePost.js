@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './CreatePost.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import NavBarSupport from './NavBarSupport';
 
 const CreatePost = () => {
   const [imageFiles, setImageFiles] = useState([]);
@@ -37,16 +38,10 @@ const CreatePost = () => {
 
   return (
     <div className='container'>
-       <nav className='navbar mt-2 rounded-4 p-3 navbar-expand-md navbar-dark bg-dark w-100'>
-        <div className='container-fluid text-center'>
-          <h2 className='navbar-brand'>List Your Property</h2>
-          <p className='navbar-text'>
-            Reach tons of renters. Get in touch. Screen tenants. Set up rent payments.
-          </p>
-        </div>
-      </nav>
-      <form className='mt-4' onSubmit={handleSubmit}>
-        <h3 className='text-center'>Type Details</h3>
+      <NavBarSupport />
+
+      <form className='mt-5' onSubmit={handleSubmit}>
+        <h3 className='text-center mt-5 p-5'>Type Details</h3>
         <div className='row justify-content-center'>
           <div className='col-md-6'>
             <div className='form-group'>
@@ -185,7 +180,7 @@ const CreatePost = () => {
             </div>
           </div>
         </div>
-        <div className='row m-3'>
+        <div className='row m-3 d-flex justify-content-center mx-auto'>
           <div className='col-md-6 d-flex justify-content-center align-items-center'>
             <button type='submit' className='btn btn-primary mx-auto'>
               Submit
