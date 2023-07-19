@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Navbar, Nav, Container, Modal } from 'react-bootstrap';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 
-
 const NavBar = () => {
   const [showMenuModal, setShowMenuModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track the user's authentication status
 
   const handleMenuToggle = () => {
     setShowMenuModal(!showMenuModal);
@@ -31,11 +31,39 @@ const NavBar = () => {
 
   const handleSignupToggle = () => {
     setShowSignupModal(!showSignupModal);
-  }
+  };
 
   const handleSignupModalClose = () => {
     setShowSignupModal(false);
-  }
+  };
+
+  // Function to check if the user is logged in
+  const checkUserLoggedIn = async () => {
+    try {
+      // Make a request to the backend to check the user's authentication status
+      const response = await axios.get('http://localhost:3000/check-auth');
+      if (response.data.success) {
+        setIsLoggedIn(true);
+      }
+    } catch (error) {
+      // Handle error if any
+    }
+  };
+
+  // Call checkUserLoggedIn on component mount
+  useEffect(() => {
+    checkUserLoggedIn();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      // Perform logout actions on the backend
+      await axios.post('http://localhost:3000/logout');
+      setIsLoggedIn(false); // Update the state to indicate the user is logged out
+    } catch (error) {
+      // Handle error if any
+    }
+  };
 
   return (
     <div>
@@ -49,14 +77,10 @@ const NavBar = () => {
           <Navbar.Collapse id="navbarNav">
             <Nav className="mx-auto">
               <Nav.Link className="nav-item w-100 m-3 d-flex justify-content-center no-wrap" href="#" active>
-              <Link to="/create-post">
-                  Enlist
-                </Link>
+                <Link to="/create-post">Enlist</Link>
               </Nav.Link>
               <Nav.Link className="nav-item m-3">
-                <Link to="listings">
-                  Listings
-                </Link>
+                <Link to="listings">Listings</Link>
               </Nav.Link>
               <Nav.Link href="#service" className="nav-item m-3">
                 Services
@@ -64,21 +88,27 @@ const NavBar = () => {
               <Nav.Link className="nav-item w-100 m-3 d-flex justify-content-center" href="#contactInfo" active>
                 Contact
               </Nav.Link>
-              <Nav.Link className="nav-item m-3" onClick={handleSignupToggle}>
-                Register
-              </Nav.Link>
+              {!isLoggedIn && (
+                <Nav.Link className="nav-item m-3" onClick={handleSignupToggle}>
+                  Register
+                </Nav.Link>
+              )}
             </Nav>
             <div className="no-display row">
               <div className="col-6">
-                <Nav.Link className="nav-item m-3">
-                  <button
-                    type="button"
-                    className="btn sign-in btn-primary"
-                    onClick={handleLoginToggle}
-                  >
-                    Log In
-                  </button>
-                </Nav.Link>
+                {isLoggedIn ? (
+                  <Nav.Link className="nav-item m-3">
+                    <button type="button" className="btn sign-in btn-primary" onClick={handleLogout}>
+                      Log Out
+                    </button>
+                  </Nav.Link>
+                ) : (
+                  <Nav.Link className="nav-item m-3">
+                    <button type="button" className="btn sign-in btn-primary" onClick={handleLoginToggle}>
+                      Log In
+                    </button>
+                  </Nav.Link>
+                )}
               </div>
             </div>
           </Navbar.Collapse>
@@ -89,26 +119,30 @@ const NavBar = () => {
         <Modal.Body>
           <Nav className="flex-column">
             <Nav.Link onClick={handleMenuModalClose}>
-            <Link to='/create-post'>
-            Enlist
-            </Link>  
+              <Link to="/create-post">Enlist</Link>
             </Nav.Link>
             <Nav.Link onClick={handleMenuModalClose}>
-              <Link to="/listings">
-                Listings
-              </Link>
+              <Link to="/listings">Listings</Link>
             </Nav.Link>
-            <Nav.Link href="/register" onClick={handleMenuModalClose}>
-              Register
-            </Nav.Link>
+            {!isLoggedIn && (
+              <Nav.Link href="/register" onClick={handleMenuModalClose}>
+                Register
+              </Nav.Link>
+            )}
           </Nav>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
-          <Link to="/login">
-            <button type="button" className="btn sign-in btn-primary btn-lg">
-              sign in
+          {!isLoggedIn ? (
+            <Link to="/login">
+              <button type="button" className="btn sign-in btn-primary btn-lg">
+                Sign In
+              </button>
+            </Link>
+          ) : (
+            <button type="button" className="btn sign-in btn-primary btn-lg" onClick={handleLogout}>
+              Log Out
             </button>
-          </Link>
+          )}
         </Modal.Footer>
       </Modal>
 
@@ -133,8 +167,6 @@ const NavBar = () => {
           </div>
         </Modal.Body>
       </Modal>
-
-
     </div>
   );
 };

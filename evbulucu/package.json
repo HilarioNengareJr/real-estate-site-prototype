@@ -8,6 +8,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
     "bootstrap": "^5.2.0",
     "carousel": "^0.0.3",
     "ionicons": "^7.1.2",

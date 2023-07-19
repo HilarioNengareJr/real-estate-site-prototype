@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Login.css';
@@ -8,6 +10,13 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [checkBox, setCheckBox] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalMessage, setModalMessage] = useState('');
+
+  // Get the history object
+  const history = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -18,13 +27,27 @@ const Login = () => {
       });
       const { success, user, message } = response.data;
       if (success) {
-        console.log('Login successful!', user);
+        // Redirect to the homepage after successful login
+        navigate('/');
+        
+        setModalTitle('Login Successful');
+        setModalMessage(`Welcome back, ${user.name}!`);
+        setShowModal(true);
       } else {
-        console.log(message);
+        setModalTitle('Login Failed');
+        setModalMessage(message);
+        setShowModal(true);
       }
     } catch (error) {
-      console.error('An error occurred:', error.message);
+      setModalTitle('Error');
+      setModalMessage('An error occurred: ' + error.message);
+      setShowModal(true);
     }
+  };
+
+  // Function to close the modal
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -80,6 +103,17 @@ const Login = () => {
           </form>
         </div>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalTitle}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <button className='btn btn-primary' onClick={handleCloseModal}>
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

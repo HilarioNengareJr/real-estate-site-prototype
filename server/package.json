@@ -18,13 +18,18 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "cradle": "^0.5.8",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-rate-limit": "^6.7.1",
+    "express-session": "^1.17.3",
     "lodash": "^4.17.21",
     "mongoose": "^7.3.1",
-    "nano": "^10.1.2"
+    "nano": "^10.1.2",
+    "password-validator": "^5.3.0",
+    "xss": "^1.0.14"
   }
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { Navbar, Container, Form, FormControl, Modal, Nav } from 'react-bootstrap';
@@ -9,6 +10,7 @@ import './NavBarOnPost.css';
 
 const NavBarOnPost = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleMenuModalToggle = () => {
     setIsOpenModal(!isOpenModal);
@@ -28,6 +30,21 @@ const NavBarOnPost = () => {
       }
       prevScrollPos = currentScrollPos;
     };
+
+    // Function to check if the user is logged in
+    const checkUserLoggedIn = async () => {
+      try {
+        // Make a request to the backend to check the user's authentication status
+        const response = await axios.get('http://localhost:3000/check-auth');
+        if (response.data.success) {
+          setIsLoggedIn(true);
+        }
+      } catch (error) {
+        // Handle error if any
+      }
+    };
+
+    checkUserLoggedIn();
   }, []);
 
   return (
@@ -45,14 +62,24 @@ const NavBarOnPost = () => {
                 Home
               </Link>
             </Nav.Link>
-            <Nav.Link className="nav-item w-100 m-3 text-center no-wrap " active>
-              <Link to='/create-post' className='d-inline'>
+            {isLoggedIn ? (
+              <>
+                <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" href="#" active>
+                  <Link to='/create-post' className='d-inline'>
+                    Enlist
+                  </Link>
+                </Nav.Link>
+                <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" href="#" active>
+                  <Link to='/profile'>
+                    Profile
+                  </Link>
+                </Nav.Link>
+              </>
+            ) : (
+              <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" onClick={handleMenuModalToggle} active>
                 Enlist
-              </Link>
-            </Nav.Link>
-            <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" href="#" active>
-              Profile
-            </Nav.Link>
+              </Nav.Link>
+            )}
           </Nav>
           <Form inline className="mr-auto this">
             <div className="position-relative">
@@ -73,19 +100,38 @@ const NavBarOnPost = () => {
                 Home
               </Link>
             </Nav.Link>
-            <Nav.Link onClick={closeModal}>
-              <Link to='/create-post'>
-               Enlist
-              </Link>
-            </Nav.Link>
+            {isLoggedIn ? (
+              <>
+                <Nav.Link onClick={closeModal}>
+                  <Link to='/create-post'>
+                    Enlist
+                  </Link>
+                </Nav.Link>
+                <Nav.Link onClick={closeModal}>
+                  <Link to='/profile'>
+                    Profile
+                  </Link>
+                </Nav.Link>
+              </>
+            ) : (
+              <Nav.Link href="/login" onClick={closeModal}>
+                Enlist
+              </Nav.Link>
+            )}
           </Nav>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
-          <Link to="/login">
-            <button type="button" className="btn sign-in btn-primary btn-lg">
-              sign in
+          {!isLoggedIn ? (
+            <Link to="/login">
+              <button type="button" className="btn sign-in btn-primary btn-lg">
+                Log In
+              </button>
+            </Link>
+          ) : (
+            <button type="button" className="btn sign-in btn-primary btn-lg" onClick={handleLogout}>
+              Log Out
             </button>
-          </Link>
+          )}
         </Modal.Footer>
       </Modal>
     </div>

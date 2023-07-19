@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Register.css';
@@ -10,7 +11,9 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [showModal, setShowModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalMessage, setModalMessage] = useState('');
 
   const handleRegister = async () => {
     try {
@@ -21,22 +24,36 @@ const Register = () => {
       });
 
       const { success, id, error } = response.data;
-      if (password !== confirmPassword){
-        console.log('Passwords do not match..sorry');
+      if (password !== confirmPassword) {
+        setModalTitle('Registration Failed');
+        setModalMessage('Passwords do not match. Please try again.');
+        setShowModal(true);
+        return;
       }
 
       if (success) {
-        console.log('Registration successful! User ID:', id);
+        setModalTitle('Registration Successful');
+        setModalMessage('You have been successfully registered! User ID: ' + id);
+        setShowModal(true);
       } else {
-        console.log('Registration failed:', error);
+        setModalTitle('Registration Failed');
+        setModalMessage(error);
+        setShowModal(true);
       }
     } catch (error) {
-      console.error('An error occurred:', error.message);
+      setModalTitle('Error');
+      setModalMessage('An error occurred: ' + error.message);
+      setShowModal(true);
     }
   };
 
+  // Function to close the modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
-    <div className='container-fluid'>
+    <div className='container-fluid '>
       <div className='row justify-content-center align-items-center mb-5'>
         <div className='col-lg-4 col-md-6 col-sm-8'>
           <form className='login-form bg-white p-4'>
@@ -102,7 +119,17 @@ const Register = () => {
           </form>
         </div>
       </div>
-     
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalTitle}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <button className='btn btn-primary' onClick={handleCloseModal}>
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
