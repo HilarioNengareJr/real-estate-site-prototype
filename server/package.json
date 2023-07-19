@@ -17,6 +17,7 @@
   "author": "Hilario Nengare J",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.4.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "cradle": "^0.5.8",
