@@ -1,12 +1,13 @@
 const cradle = require('cradle');
 
-const connection = cradle.Connection({
-    host: 'localhost',
-    port: 5984,
+const connection = new cradle.Connection('http://localhost', 5984, {
     cache: true,
     raw: false,
 });
 
-const db = connection.database('users');
+
+const dbName = 'users';
+
+const db = connection.database(dbName);
 
 module.exports = db;

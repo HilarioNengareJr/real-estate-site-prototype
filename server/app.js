@@ -2,12 +2,14 @@
 
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
+const db = require('./db');
 
 const app = express();
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, '../evbulucu/build')));
-
+app.use(bodyParser.json());
 app.use((req, res, next) => {
   if (/(\.ico|\.js|\.css|\.jpg|\.png|\.map)$/i.test(req.path)) {
     next();
