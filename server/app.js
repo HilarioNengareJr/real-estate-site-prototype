@@ -9,7 +9,17 @@ const port = 3000;
 
 const baseURL = 'http://localhost:5984';
 const dbName = 'users';
-const usersAPI = axios.create({ baseURL });
+
+const adminUsername = 'admin';
+const adminPassword = 'enviolata79';
+
+const usersAPI = axios.create({
+  baseURL,
+  auth: {
+    username: adminUsername,
+    password: adminPassword,
+  },
+});
 
 const bcrypt = require('bcrypt');
 
@@ -26,11 +36,7 @@ const loginLimiter = rateLimit({
 
 const passwordSchema = new passwordValidator();
 passwordSchema
-  .is().min(8) // Minimum length 8
-  .has().uppercase() // Must have uppercase letters
-  .has().lowercase() // Must have lowercase letters
-  .has().digits() // Must have digits
-  .has().not().spaces(); // Should not have spaces
+  .is().min(8); // Minimum length 8
 
 app.use(express.static(path.join(__dirname, '../evbulucu/build')));
 app.use(bodyParser.json());
@@ -41,20 +47,17 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: true, 
+      secure: true,
       httpOnly: true,
       maxAge: 86400000,
     },
   })
 );
 
-// Middleware to check if the user is logged in
 const checkAuth = (req, res, next) => {
   if (req.session.user) {
-    // User is logged in
     next();
   } else {
-    // User is not logged in
     res.status(401).json({ success: false, message: 'Unauthorized' });
   }
 };
@@ -67,11 +70,18 @@ app.post('/register', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid password' });
     }
 
+    const emailExistsResponse = await usersAPI.get(`/${dbName}/_design/users/_view/login-by-email?key="${email}"`);
+    const emailExistsRows = emailExistsResponse.data.rows;
+
+    if (emailExistsRows.length > 0) {
+      return res.status(409).json({ success: false, message: 'User with this email already exists' });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = {
-      name: xss(name), 
-      email: xss(email), 
+      name: xss(name),
+      email: xss(email),
       password: hashedPassword,
     };
 

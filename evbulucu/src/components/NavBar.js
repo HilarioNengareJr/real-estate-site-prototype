@@ -37,31 +37,29 @@ const NavBar = () => {
     setShowSignupModal(false);
   };
 
-  // Function to check if the user is logged in
-  const checkUserLoggedIn = async () => {
-    try {
-      // Make a request to the backend to check the user's authentication status
-      const response = await axios.get('http://localhost:3000/check-auth');
-      if (response.data.success) {
-        setIsLoggedIn(true);
-      }
-    } catch (error) {
-      // Handle error if any
-    }
-  };
 
-  // Call checkUserLoggedIn on component mount
+const checkUserLoggedIn = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/check-auth');
+    if (response.data.success) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  } catch (error) {
+    setIsLoggedIn(false);
+  }
+};
+
   useEffect(() => {
     checkUserLoggedIn();
   }, []);
 
   const handleLogout = async () => {
     try {
-      // Perform logout actions on the backend
       await axios.post('http://localhost:3000/logout');
-      setIsLoggedIn(false); // Update the state to indicate the user is logged out
+      setIsLoggedIn(false);
     } catch (error) {
-      // Handle error if any
     }
   };
 
