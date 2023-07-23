@@ -52,7 +52,7 @@ const NavBarSupport = () => {
         show={showMenuModal}
         onHide={handleMenuModalClose}
         centered
-        onClick={handleMenuModalClose} // Close modal when clicking anywhere on the screen
+        onClick={handleMenuModalClose}
       >
         <Modal.Body>
           <Nav className="flex-column">

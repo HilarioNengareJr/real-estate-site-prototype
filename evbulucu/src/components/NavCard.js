@@ -35,7 +35,8 @@ const NavCard = () => {
       <Link className='p-1 text-white' onClick={openOverview} title="Amenities">Overview</Link>
 
       {isOpen && (
-        <div className='container'>
+        <div className='container-fluid'>
+        <div className='row'>
           <div className="modal-overlay">
             <div className="modal-content bg-white p-5">
               <h1>Gallery</h1>
@@ -44,6 +45,7 @@ const NavCard = () => {
               </span>
               <Gallery />
             </div>
+          </div>
           </div>
         </div>
       )}

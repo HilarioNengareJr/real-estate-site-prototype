@@ -11,7 +11,7 @@ const NavBar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track the user's authentication status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleMenuToggle = () => {
     setShowMenuModal(!showMenuModal);
@@ -38,18 +38,18 @@ const NavBar = () => {
   };
 
 
-const checkUserLoggedIn = async () => {
-  try {
-    const response = await axios.get('http://localhost:3000/check-auth');
-    if (response.data.success) {
-      setIsLoggedIn(true);
-    } else {
+  const checkUserLoggedIn = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/users/check-auth');
+      if (response.data.success) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    } catch (error) {
       setIsLoggedIn(false);
     }
-  } catch (error) {
-    setIsLoggedIn(false);
-  }
-};
+  };
 
   useEffect(() => {
     checkUserLoggedIn();
@@ -57,7 +57,7 @@ const checkUserLoggedIn = async () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:3000/logout');
+      await axios.post('http://localhost:3000/api/users/logout');
       setIsLoggedIn(false);
     } catch (error) {
     }
@@ -74,9 +74,16 @@ const checkUserLoggedIn = async () => {
           <Navbar.Toggle aria-controls="navbarNav" onClick={handleMenuToggle} />
           <Navbar.Collapse id="navbarNav">
             <Nav className="mx-auto">
-              <Nav.Link className="nav-item w-100 m-3 d-flex justify-content-center no-wrap" href="#" active>
-                <Link to="/create-post">Enlist</Link>
-              </Nav.Link>
+              {isLoggedIn ? (
+                <Nav.Link className="nav-item w-100 m-3 d-flex justify-content-center no-wrap" href="#" active>
+                  <Link to="/create-post">Enlist</Link>
+                </Nav.Link>
+              ) : (
+                <Nav.Link className="nav-item w-100 m-3 d-flex justify-content-center no-wrap" onClick={handleLoginToggle} active>
+                  Enlist
+                </Nav.Link>
+              )}
+
               <Nav.Link className="nav-item m-3">
                 <Link to="listings">Listings</Link>
               </Nav.Link>
@@ -156,8 +163,7 @@ const checkUserLoggedIn = async () => {
       </Modal>
 
       <Modal className="text-center d-flex justify-content-center w-100" show={showSignupModal} onHide={handleSignupModalClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Sign Up</Modal.Title>
+        <Modal.Header closeButton><Modal.Title>Sign UP</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="login-modal-content">

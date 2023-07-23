@@ -1,9 +1,10 @@
+// Register.js
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Register.css';
-import axios from 'axios';
 
 const Register = () => {
 
@@ -15,25 +16,32 @@ const Register = () => {
   const [modalTitle, setModalTitle] = useState('');
   const [modalMessage, setModalMessage] = useState('');
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setModalTitle('Registration Failed');
+      setModalMessage('Email or Password is required');
+      setShowModal(true);
+    }
+
+    if (password !== confirmPassword) {
+      setModalTitle('Registration Failed');
+      setModalMessage('Passwords do not match. Please try again.');
+      setShowModal(true);
+      return;
+    }
+
     try {
-      const response = await axios.post('http://localhost:3000/register', {
-        name,
+      const response = await axios.post('http://localhost:3000/api/users/register', {
+        username: name,
         email,
         password,
       });
 
       const { success, id, error } = response.data;
-      if (password !== confirmPassword) {
-        setModalTitle('Registration Failed');
-        setModalMessage('Passwords do not match. Please try again.');
-        setShowModal(true);
-        return;
-      }
-
       if (success) {
         setModalTitle('Registration Successful');
-        setModalMessage('You have been successfully registered! User ID: ' + id);
+        setModalMessage('You have been successfully registered! ');
         setShowModal(true);
       } else {
         setModalTitle('Registration Failed');
@@ -47,7 +55,6 @@ const Register = () => {
     }
   };
 
-  // Function to close the modal
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -56,10 +63,10 @@ const Register = () => {
     <div className='container-fluid '>
       <div className='row justify-content-center align-items-center mb-5'>
         <div className='col-lg-4 col-md-6 col-sm-8'>
-          <form className='login-form bg-white p-4'>
+          <form className='login-form bg-white p-4' onSubmit={handleRegister}>
             <div className='text-center mb-4 brand-font'>
-            Student Rental
-            <div className="line w-50 m-auto"></div>
+              Student Rental
+              <div className="line w-50 m-auto"></div>
               <h1 className='h3 font-weight-normal mt-3'>Registration</h1>
             </div>
             <div className='form-group mb-3'>
@@ -113,7 +120,7 @@ const Register = () => {
               />
             </div>
 
-            <button className='btn btn-lg btn-primary btn-block mt-2' type='submit' onClick={handleRegister}>
+            <button className='btn btn-lg btn-primary btn-block mt-2' type='submit'>
               Register
             </button>
           </form>

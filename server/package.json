@@ -19,17 +19,27 @@
   "dependencies": {
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "cradle": "^0.5.8",
+    "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-rate-limit": "^6.7.1",
     "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.1",
     "lodash": "^4.17.21",
     "mongoose": "^7.3.1",
     "nano": "^10.1.2",
     "password-validator": "^5.3.0",
+    "pg": "^8.11.1",
+    "pg-hstore": "^2.3.4",
+    "pg-pool": "^3.6.1",
+    "pg-promise": "^11.5.0",
+    "sequelize": "^6.32.1",
     "xss": "^1.0.14"
   }
 }

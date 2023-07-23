@@ -15,23 +15,22 @@ const Login = () => {
   const [modalTitle, setModalTitle] = useState('');
   const [modalMessage, setModalMessage] = useState('');
 
-  // Get the history object
-  const history = useNavigate();
-
-  const handleLogin = async () => {
+  const navigate = useNavigate(); 
+  const handleLogin = async (e) => {
+    e.preventDefault(); 
     try {
-      const response = await axios.post('http://localhost:3000/login', {
+      const response = await axios.post('http://localhost:3000/api/users/login', {
         email,
         password,
         checkBox,
       });
       const { success, user, message } = response.data;
       if (success) {
-        // Redirect to the homepage after successful login
+        
         navigate('/');
         
         setModalTitle('Login Successful');
-        setModalMessage(`Welcome back, ${user.name}!`);
+        setModalMessage(`Welcome , ${user.username}!`);
         setShowModal(true);
       } else {
         setModalTitle('Login Failed');
@@ -54,7 +53,7 @@ const Login = () => {
     <div className='container-fluid pt-5'>
       <div className='row justify-content-center align-items-center mt-2 mb-5'>
         <div className='col-lg-4 col-md-6 col-sm-8'>
-          <form className='login-form bg-white p-4'>
+          <form className='login-form bg-white p-4' onSubmit={handleLogin}>
             <div className='text-center mb-4 brand-font'>
               Student Rental
               <div className="line w-50 m-auto"></div>
@@ -97,7 +96,7 @@ const Login = () => {
               />
               <label className='form-check-label' htmlFor='checkBox'>Remember me</label>
             </div>
-            <button className='btn btn-lg btn-primary btn-block' type='submit' onClick={handleLogin}>
+            <button className='btn btn-lg btn-primary btn-block' type='submit'>
               Sign in
             </button>
           </form>
