@@ -64,10 +64,10 @@ const CreatePost = () => {
       bus_stop: details.busStopDistance,
       restaurant: details.restaurant,
     };
-
+    console.log('Sending data:', postData);
     try {
-      const response = await axios.post('/api/enlist', postData);
-
+      const response = await axios.post('/api/posts/enlist', postData);
+      console.log('Response:', response.data); 
       if (response.status === 200) {
         setShowSuccessModal(true);
       } else {

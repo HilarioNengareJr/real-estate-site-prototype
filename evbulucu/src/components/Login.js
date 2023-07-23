@@ -26,12 +26,10 @@ const Login = () => {
       });
       const { success, user, message } = response.data;
       if (success) {
-        
-        navigate('/');
-        
         setModalTitle('Login Successful');
         setModalMessage(`Welcome , ${user.username}!`);
         setShowModal(true);
+        navigate('/');
       } else {
         setModalTitle('Login Failed');
         setModalMessage(message);
