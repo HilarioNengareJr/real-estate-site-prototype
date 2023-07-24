@@ -37,10 +37,11 @@ const NavBar = () => {
     setShowSignupModal(false);
   };
 
-
   const checkUserLoggedIn = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/users/check-auth');
+      const response = await axios.get('http://localhost:3000/api/users/check-auth', {
+        withCredentials: true,
+      });
       if (response.data.success) {
         setIsLoggedIn(true);
       } else {
@@ -57,7 +58,9 @@ const NavBar = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:3000/api/users/logout');
+      await axios.post('http://localhost:3000/api/users/logout', null, {
+        withCredentials: true,
+      });
       setIsLoggedIn(false);
     } catch (error) {
     }
@@ -163,7 +166,8 @@ const NavBar = () => {
       </Modal>
 
       <Modal className="text-center d-flex justify-content-center w-100" show={showSignupModal} onHide={handleSignupModalClose} centered>
-        <Modal.Header closeButton><Modal.Title>Sign UP</Modal.Title>
+        <Modal.Header closeButton>
+          <Modal.Title>Sign UP</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="login-modal-content">

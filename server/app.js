@@ -3,7 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const userRoutes = require('./users');
-const postRoutes = require('./post'); // Import the new post routes
+const postRoutes = require('./post'); 
 
 const port = process.env.PORT || 3000;
 

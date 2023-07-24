@@ -39,6 +39,7 @@
     "pg-hstore": "^2.3.4",
     "pg-pool": "^3.6.1",
     "pg-promise": "^11.5.0",
+    "react-dropzone": "^14.2.3",
     "sequelize": "^6.32.1",
     "xss": "^1.0.14"
   }

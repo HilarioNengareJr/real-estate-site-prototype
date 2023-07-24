@@ -4,6 +4,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { Navbar, Nav, Container, Modal } from 'react-bootstrap';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
 
 const NavBarSupport = () => {
   const [showMenuModal, setShowMenuModal] = useState(false);
@@ -28,10 +31,15 @@ const NavBarSupport = () => {
           <Navbar.Collapse id="navbarNav">
             <Nav className="me-auto">
             <Nav.Link className="nav-item m-3">
-                <Link to="/">Home Page</Link>
+                <Link to="/">Home</Link>
               </Nav.Link>
               <Nav.Link className="nav-item m-3">
-                <Link to="listings">See Listings</Link>
+                <Link to="/listings">Listings</Link>
+              </Nav.Link>
+              <Nav.Link className="nav-item m-3">
+                <Link>
+                <FontAwesomeIcon icon={faUser}/>
+                </Link>
               </Nav.Link>
             </Nav>
             <div className="no-display row">
@@ -57,7 +65,12 @@ const NavBarSupport = () => {
         <Modal.Body>
           <Nav className="flex-column">
           <Nav.Link className="nav-item m-3">
-                <Link to="/">Home</Link>
+              <Link to="/">Home</Link>
+          </Nav.Link>
+          <Nav.Link className="nav-item m-3">
+                <Link>
+                Profile <FontAwesomeIcon icon={faUser}/>
+                </Link>
               </Nav.Link>
             <Nav.Link>
               <Link to="/listings">Listings</Link>

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './CreatePost.css';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import NavBarSupport from './NavBarSupport';
+import Dropzone from 'react-dropzone';
+
 
 const CreatePost = () => {
+  const navigate = useNavigate();
   const [imageFiles, setImageFiles] = useState([]);
   const [typeOfProperty, setTypeOfProperty] = useState('Apartment');
   const [price, setPrice] = useState('');
@@ -19,6 +23,10 @@ const CreatePost = () => {
   const [baths, setBaths] = useState(1);
   const [rooms, setRooms] = useState(1);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const onDrop = (acceptedFiles) => {
+    setImageFiles(acceptedFiles);
+  };
 
   const [details, setDetails] = useState({
     price: '',
@@ -70,6 +78,11 @@ const CreatePost = () => {
       console.log('Response:', response.data); 
       if (response.status === 200) {
         setShowSuccessModal(true);
+
+        setTimeout(() => {
+          setShowSuccessModal(false);
+          navigate('/listings'); 
+        }, 2000);
       } else {
         console.log('Error submitting data.');
       }
@@ -82,10 +95,26 @@ const CreatePost = () => {
       <NavBarSupport />
 
       <form className='mt-5' onSubmit={handleSubmit}>
+       <h3 className='text-center mt-5 p-5'>Upload Images</h3>
+        <div className='row justify-content-center'>
+          <div className='col-md-6'>
+          <div className='border-1 p-3'>
+          <Dropzone onDrop={onDrop} accept='image/*' multiple>
+              {({ getRootProps, getInputProps }) => (
+                <div {...getRootProps()} className='dropzone'>
+                  <input {...getInputProps()} />
+                  <p>Drag 'n' drop some files here, or click to select files</p>
+                </div>
+              )}
+            </Dropzone>
+          </div>
+          </div>
+        </div>
+
         <h3 className='text-center mt-5 p-5'>Type Details</h3>
         <div className='row justify-content-center'>
           <div className='col-md-6'>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='type_of_property'>Type of property</label>
               <select
                 className='form-control'
@@ -98,7 +127,7 @@ const CreatePost = () => {
                 <option value='House'>House</option>
               </select>
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label>Price</label>
               <input
                 type='text'
@@ -111,7 +140,7 @@ const CreatePost = () => {
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label>City</label>
               <input
                 type='text'
@@ -124,7 +153,7 @@ const CreatePost = () => {
                 onChange={(e) => setCity(e.target.value)}
               />
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='whatsapp'>WhatsApp</label>
               <input
                 type='tel'
@@ -137,7 +166,7 @@ const CreatePost = () => {
                 onChange={(e) => setWhatsapp(e.target.value)}
               />
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='phoneNumber'>Phone Number</label>
               <input
                 type='tel'
@@ -150,7 +179,7 @@ const CreatePost = () => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='address'>Address</label>
               <input
                 type='text'
@@ -167,7 +196,7 @@ const CreatePost = () => {
                 Type address in full to reach more people.
               </small>
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='beds'>Number of <strong>beds</strong></label>
               <select
                 className='form-control'
@@ -183,7 +212,7 @@ const CreatePost = () => {
                 <option value={6}>6</option>
               </select>
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='baths'>Number of <strong>baths</strong></label>
               <select
                 className='form-control'
@@ -199,7 +228,7 @@ const CreatePost = () => {
                 <option value={6}>6</option>
               </select>
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='rooms'>Number of <strong>rooms</strong></label>
               <select
                 className='form-control'
@@ -249,7 +278,7 @@ const CreatePost = () => {
         <h3 className='text-center'>Infrastructure</h3>
         <div className='row justify-content-center'>
           <div className='col-md-6'>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='school'>School</label>
               <select
                 className='form-control'
@@ -265,7 +294,7 @@ const CreatePost = () => {
                 <option value='Far / Next town'>Far / Next town</option>
               </select>
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='market'>Market</label>
               <select
                 className='form-control'
@@ -279,7 +308,7 @@ const CreatePost = () => {
                 <option value='3km +'>3km +</option>
               </select>
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='parking'>Parking</label>
               <select
                 className='form-control'
@@ -292,7 +321,7 @@ const CreatePost = () => {
                 <option value='N/A'>N/A</option>
               </select>
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='bus-stop'>Bus Stop</label>
               <select
                 className='form-control'
@@ -307,7 +336,7 @@ const CreatePost = () => {
                 <option value='N/A'>N/A</option>
               </select>
             </div>
-            <div className='form-group'>
+            <div className='form-group my-2'>
               <label htmlFor='restaurant'>Restaurant</label>
               <select
                 className='form-control'
