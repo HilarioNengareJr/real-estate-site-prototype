@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
+    //add functionality for image upload
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
