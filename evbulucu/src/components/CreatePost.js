@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import NavBarSupport from './NavBarSupport';
-import Dropzone from 'react-dropzone';
 
 
 const CreatePost = () => {
@@ -96,20 +95,6 @@ const CreatePost = () => {
 
       <form className='mt-5' onSubmit={handleSubmit}>
        <h3 className='text-center mt-5 p-5'>Upload Images</h3>
-        <div className='row justify-content-center'>
-          <div className='col-md-6'>
-          <div className='border-1 p-3'>
-          <Dropzone onDrop={onDrop} accept='image/*' multiple>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps()} className='dropzone'>
-                  <input {...getInputProps()} />
-                  <p>Drag 'n' drop some files here, or click to select files</p>
-                </div>
-              )}
-            </Dropzone>
-          </div>
-          </div>
-        </div>
 
         <h3 className='text-center mt-5 p-5'>Type Details</h3>
         <div className='row justify-content-center'>

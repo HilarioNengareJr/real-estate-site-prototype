@@ -15,8 +15,6 @@ const Listing = () => {
         <div className="col-md-8">
           <div className="mt-4">
             <PostCard />
-            <PostCard />
-            <PostCard />
           </div>
         </div>
         <div className="col-md-4 d-none d-md-flex justify-content-center align-items-center">

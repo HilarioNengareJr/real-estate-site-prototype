@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
-const userRoutes = require('./users');
+const {userRoutes} = require('./users');
 const postRoutes = require('./post'); 
 
 const port = process.env.PORT || 3000;
@@ -21,9 +21,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use('/api/users', userRoutes); // Use the user routes as before
-
-// Use the post routes from the separate file
+app.use('/api/users', userRoutes); 
 app.use('/api/posts', postRoutes);
 
 app.use((req, res, next) => {

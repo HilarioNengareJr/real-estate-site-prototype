@@ -1,4 +1,3 @@
-// users.js
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -69,7 +68,6 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// Check authentication middleware
 const authenticateToken = (req, res, next) => {
   const token = req.cookies.token;
 
@@ -90,6 +88,7 @@ const authenticateToken = (req, res, next) => {
       }
 
       req.user = user.rows[0];
+      console.log(req.user.id);
       next();
     } catch (err) {
       res.status(400).json({ success: false, error: err.message });
@@ -97,11 +96,13 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Check authentication endpoint
 router.get('/check-auth', authenticateToken, (req, res) => {
   res.status(200).json({ success: true, user: req.user });
 });
 
 
 
-module.exports = router;
+module.exports = { 
+  userRoutes:router, 
+  authenticateToken:authenticateToken
+};

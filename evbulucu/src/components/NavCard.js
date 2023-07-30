@@ -7,7 +7,7 @@ import Gallery from './Gallery';
 
 
 
-const NavCard = () => {
+const NavCard = ({Data}) => {
   const [isOpen, setIsOpenModal] = useState(false);
   const [isOpenOverview, setIsOpenOverview] = useState(false);
 
@@ -62,35 +62,35 @@ const NavCard = () => {
                 <ul className='amenities-list list-unstyled p-4'>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faWifi}  className='detail-icon p-2'/>
-                    <span className='ms-3'>WiFi: Installed</span>
+                    <span className='ms-3'>WiFi: {Data.wifi}</span>
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faParking}  className='detail-icon p-2'/>
-                    <span className='ms-3'>Parking: N/A</span>
+                    <span className='ms-3'>Parking: {Data.parking}</span>
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faSwimmingPool} className='detail-icon p-2'/>
-                    <span className='ms-3'>Running water: yes</span>
+                    <span className='ms-3'>Running water: {Data.running_water}</span>
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faUtensils}  className='detail-icon p-2'/>
-                    <span className='ms-3'>Restaurant: 2km</span>
+                    <span className='ms-3'>Restaurant: {Data.restaurant}</span>
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faBed}  className='detail-icon p-2' />
-                    <span className='ms-3'>Bed(s): 1</span>
+                    <span className='ms-3'>Bed(s): {Data.beds}</span>
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faBus}  className='detail-icon p-2' />
-                    <span className='ms-3'>Bus Stop: 500m</span>
+                    <span className='ms-3'>Bus Stop: {Data.bus_stop}</span>
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faSchool}  className='detail-icon p-2'/>
-                    <span className='ms-3'>School: Nearby</span>
+                    <span className='ms-3'>School: {Data.school}</span>
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faStore}  className='detail-icon p-2'/>
-                    <span className='ms-3'>Market: 1km</span>
+                    <span className='ms-3'>Market: {Data.market}</span>
                   </li>
                 </ul>
               </div>
