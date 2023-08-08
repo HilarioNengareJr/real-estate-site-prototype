@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWifi, faParking, faSwimmingPool, faUtensils, faBed, faBus, faSchool, faStore } from '@fortawesome/free-solid-svg-icons';
+import { faWifi, faParking, faSwimmingPool, faUtensils, faBed, faBus, faSchool, faStore, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import './NavCard.css';
 import Gallery from './Gallery';
 
@@ -62,7 +62,7 @@ const NavCard = ({Data}) => {
                 <ul className='amenities-list list-unstyled p-4'>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faWifi}  className='detail-icon p-2'/>
-                    <span className='ms-3'>WiFi: {Data.wifi}</span>
+                    <span className='ms-3'>WiFi: {Data.wifi ? <FontAwesomeIcon icon={faCheck} /> : <FontAwesomeIcon icon={faTimes} /> }</span>
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faParking}  className='detail-icon p-2'/>
@@ -70,15 +70,11 @@ const NavCard = ({Data}) => {
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faSwimmingPool} className='detail-icon p-2'/>
-                    <span className='ms-3'>Running water: {Data.running_water}</span>
+                    <span className='ms-3'>Running water: {Data.running_water ? <FontAwesomeIcon icon={faCheck} /> : <FontAwesomeIcon icon={faTimes} /> }</span>
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faUtensils}  className='detail-icon p-2'/>
                     <span className='ms-3'>Restaurant: {Data.restaurant}</span>
-                  </li>
-                  <li className='d-flex align-items-center'>
-                    <FontAwesomeIcon icon={faBed}  className='detail-icon p-2' />
-                    <span className='ms-3'>Bed(s): {Data.beds}</span>
                   </li>
                   <li className='d-flex align-items-center'>
                     <FontAwesomeIcon icon={faBus}  className='detail-icon p-2' />

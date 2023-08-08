@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import NavBarSupport from './NavBarSupport';
-
+import ImageUploader from 'react-images-upload';
 
 const CreatePost = () => {
   const navigate = useNavigate();
   const [imageFiles, setImageFiles] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
   const [typeOfProperty, setTypeOfProperty] = useState('Apartment');
   const [price, setPrice] = useState('');
   const [city, setCity] = useState('');
@@ -23,10 +24,6 @@ const CreatePost = () => {
   const [rooms, setRooms] = useState(1);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const onDrop = (acceptedFiles) => {
-    setImageFiles(acceptedFiles);
-  };
-
   const [details, setDetails] = useState({
     price: '',
     city: '',
@@ -37,11 +34,6 @@ const CreatePost = () => {
     parking: '',
   });
 
-  const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-    setImageFiles(files);
-  };
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setDetails((prevDetails) => ({
@@ -50,37 +42,51 @@ const CreatePost = () => {
     }));
   };
 
+  const handleDeleteImage = (index) => {
+    const newImageFiles = [...imageFiles];
+    newImageFiles.splice(index, 1);
+    setImageFiles(newImageFiles);
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const postData = {
-      type_of_property: typeOfProperty,
-      city,
-      price,
-      whatsapp,
-      phone_number: phoneNumber,
-      address,
-      beds,
-      baths,
-      rooms,
-      wifi: wifiChecked,
-      running_water: runningWaterChecked,
-      school: details.school,
-      market: details.market,
-      parking: details.parking,
-      bus_stop: details.busStopDistance,
-      restaurant: details.restaurant,
-    };
-    console.log('Sending data:', postData);
+  
+    const formData = new FormData();
+    imageFiles.forEach((file) => {
+      formData.append('images', file);
+    });
+  
+    formData.append('type_of_property', typeOfProperty);
+    formData.append('city', city);
+    formData.append('price', price);
+    formData.append('whatsapp', whatsapp);
+    formData.append('phone_number', phoneNumber);
+    formData.append('address', address);
+    formData.append('beds', beds);
+    formData.append('baths', baths);
+    formData.append('rooms', rooms);
+    formData.append('wifi', wifiChecked);
+    formData.append('running_water', runningWaterChecked);
+    formData.append('school', details.school);
+    formData.append('market', details.market);
+    formData.append('parking', details.parking);
+    formData.append('bus_stop', details.busStopDistance);
+    formData.append('restaurant', details.restaurant);
+  
+    console.log('Sending data:', formData);
     try {
-      const response = await axios.post('/api/posts/enlist', postData);
-      console.log('Response:', response.data); 
+      const response = await axios.post('/api/posts/enlist', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Response:', response.data);
       if (response.status === 200) {
         setShowSuccessModal(true);
-
+  
         setTimeout(() => {
           setShowSuccessModal(false);
-          navigate('/listings'); 
+          navigate('/listings');
         }, 2000);
       } else {
         console.log('Error submitting data.');
@@ -89,12 +95,44 @@ const CreatePost = () => {
       console.error('Error submitting data:', error);
     }
   };
+  
+
+
   return (
     <div className='container'>
       <NavBarSupport />
 
       <form className='mt-5' onSubmit={handleSubmit}>
-       <h3 className='text-center mt-5 p-5'>Upload Images</h3>
+        <h3 className='text-center mt-5 p-5'>Upload Images</h3>
+        <div className='mt-3'>
+  <ImageUploader
+    withIcon={true}
+    buttonText='Choose images'
+    onChange={(files) => setImageFiles(files)}
+    imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
+    maxFileSize={5242880}
+  />
+  {imageFiles.length > 0 && (
+  <div className='image-previews mt-3'>
+    {imageFiles.map((file, index) => (
+      <div key={index} className='image-preview-container'>
+        <img
+          src={URL.createObjectURL(file)}
+          alt={`Preview ${index}`}
+          className='image-preview'
+        />
+        <button
+          className='delete-button'
+          onClick={() => handleDeleteImage(index)}
+        >
+          Delete
+        </button>
+      </div>
+    ))}
+  </div>
+)}
+
+</div>
 
         <h3 className='text-center mt-5 p-5'>Type Details</h3>
         <div className='row justify-content-center'>

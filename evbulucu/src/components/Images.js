@@ -28,8 +28,6 @@ const Images = () => {
     setIsModalOpen(false);
   };
 
- 
-  // Custom arrow component for the previous arrow
   const CustomPrevArrow = (props) => {
     const { onClick } = props;
     return (
@@ -39,7 +37,6 @@ const Images = () => {
     );
   };
 
-  // Custom arrow component for the next arrow
   const CustomNextArrow = (props) => {
     const { onClick } = props;
     return (
@@ -73,8 +70,9 @@ const Images = () => {
             key={index}
             onClick={() => openModal(index)}
           >
+          <figure>
             <img className="carousel-image img-fluid" src={image} alt={`Image ${index}`} style={imgStyle} />
-            
+          </figure>
           </div>
         ))}
       </Slider>

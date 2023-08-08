@@ -29,7 +29,7 @@ const PostCard = () => {
   return (
     <div className='mt-4 border wide border-2 border-lg-only'>
       {(data.length === 0) ?
-        (<div> No post data yet </div>) :
+        (<div className='vh-100'> No post data yet </div>) :
         (data.map((post) => (
           <Row key={post.id} className="justify-content-center d-flex ">
             <Col xs={12} md={8} lg={12}>

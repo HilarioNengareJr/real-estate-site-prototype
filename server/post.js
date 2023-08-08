@@ -1,11 +1,28 @@
 const express = require('express');
 const pool = require('./db');
 const { check, validationResult } = require('express-validator');
+const multer = require('multer'); 
+const path = require('path');
 const router = express.Router();
-const {authenticateToken} = require('./users');
+const { authenticateToken } = require('./users');
+
+// Set up multer storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); 
+  },
+
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, uniqueSuffix + ext); 
+  },
+});
+
+const upload = multer({ storage }); 
 
 router.post(
-  '/enlist',
+  '/enlist', upload.array('images'),
   [
     check('type_of_property').notEmpty().isString(),
     check('price').notEmpty().isString(),
@@ -16,7 +33,8 @@ router.post(
     check('beds').notEmpty().isInt({ min: 1 }),
     check('baths').notEmpty().isInt({ min: 1 }),
     check('rooms').notEmpty().isInt({ min: 1 }),
-  ], authenticateToken,
+  ], 
+  authenticateToken,
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -42,12 +60,13 @@ router.post(
       restaurant,
     } = req.body;
     const userId = req.user.id;
-    console.log(req.user.id);
 
     try {
+      const imagePaths = req.files.map((file) => file.path);
+ 
       await pool.query(
-        `INSERT INTO posts (type_of_property, price, city, whatsapp, phone_number, address, beds, baths, rooms, wifi, running_water, school, market, parking, bus_stop, restaurant,user_id)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)`,
+        `INSERT INTO posts (type_of_property, price, city, whatsapp, phone_number, address, beds, baths, rooms, wifi, running_water, school, market, parking, bus_stop, restaurant, user_id, image_filenames)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)`,
         [
           type_of_property,
           price,
@@ -65,7 +84,8 @@ router.post(
           parking,
           bus_stop,
           restaurant,
-          userId
+          userId,
+          imagePaths, 
         ]
       );
 
