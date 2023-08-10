@@ -62,8 +62,8 @@ router.post(
     const userId = req.user.id;
 
     try {
-      const imagePaths = req.files.map((file) => file.path);
- 
+      const imagePaths = req.files.map((file) => file.filename);
+      
       await pool.query(
         `INSERT INTO posts (type_of_property, price, city, whatsapp, phone_number, address, beds, baths, rooms, wifi, running_water, school, market, parking, bus_stop, restaurant, user_id, image_filenames)
          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)`,

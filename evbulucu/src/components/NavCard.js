@@ -43,7 +43,7 @@ const NavCard = ({Data}) => {
               <span className="close" onClick={closeModal}>
                 &times;
               </span>
-              <Gallery />
+              <Gallery postImages={Data.file_names} />
             </div>
           </div>
           </div>

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import 'react-image-lightbox/style.css';
 import Lightbox from 'react-image-lightbox';
-import { accommodationImages } from './Images';
 import './Gallery.css';
 
-const Gallery = () => {
+const Gallery = ({ postImages }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 
@@ -19,23 +18,23 @@ const Gallery = () => {
 
   return (
     <div className='bg-white gallery-card '>
-    <span className='p-2 m-3 text-white'>Click on the image to expand.</span>
-      <div className="row">
-        <div className="col-lg-8 d-lg-flex justify-content-lg-around w-100 col-md-4 ">
-          {accommodationImages.map((image, index) => (
-            <div key={index} className="gallery-item" onClick={() => openLightbox(index)}>
-              <img src={image} alt={`Image ${index}`} className=" w-100 gallery-image" />
+      <span className='p-2 m-3 text-white'>Click on the image to expand.</span>
+      <div className='row'>
+        <div className='col-lg-8 d-lg-flex justify-content-lg-around w-100 col-md-4'>
+          {postImages.map((filename, index) => (
+            <div key={index} className='gallery-item' onClick={() => openLightbox(index)}>
+              <img src={`/server/uploads/${filename}`} alt={`Image ${index}`} className='w-100 gallery-image' />
             </div>
           ))}
         </div>
         {isOpen && (
           <Lightbox
-            mainSrc={accommodationImages[photoIndex]}
-            nextSrc={accommodationImages[(photoIndex + 1) % accommodationImages.length]}
-            prevSrc={accommodationImages[(photoIndex + accommodationImages.length - 1) % accommodationImages.length]}
+            mainSrc={`/server/uploads/${postImages[photoIndex]}`}
+            nextSrc={`/server/uploads/${postImages[(photoIndex + 1) % postImages.length]}`}
+            prevSrc={`/server/uploads/${postImages[(photoIndex + postImages.length - 1) % postImages.length]}`}
             onCloseRequest={closeLightbox}
-            onMovePrevRequest={() => setPhotoIndex((photoIndex + accommodationImages.length - 1) % accommodationImages.length)}
-            onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % accommodationImages.length)}
+            onMovePrevRequest={() => setPhotoIndex((photoIndex + postImages.length - 1) % postImages.length)}
+            onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % postImages.length)}
             animationDisabled={false}
           />
         )}

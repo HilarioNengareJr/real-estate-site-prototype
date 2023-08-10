@@ -6,16 +6,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Images.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronCircleLeft, faChevronCircleRight, faHeart, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
 
-export const accommodationImages = [
- '/images/pexels-photo-106399.jpeg',
- '/images/pexels-photo-186077.jpeg',
- '/images/pexels-photo-323780.jpeg',
- '/images/pexels-photo-1475938.jpeg',
-];
+const Images = ({ imageFilenames }) => {
 
-const Images = () => {
+  if (imageFilenames.length === 0) {
+    return <div>No images available</div>;
+  }
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -36,6 +34,8 @@ const Images = () => {
       </div>
     );
   };
+
+  console.log('Image files in images ', imageFilenames);
 
   const CustomNextArrow = (props) => {
     const { onClick } = props;
@@ -64,17 +64,24 @@ const Images = () => {
   return (
     <div>
       <Slider {...settings}>
-        {accommodationImages.map((image, index) => (
+        {imageFilenames.map((filename, index) => (
           <div
             className="slider image-container d-flex justify-content-sm-center"
             key={index}
             onClick={() => openModal(index)}
           >
-          <figure>
-            <img className="carousel-image img-fluid" src={image} alt={`Image ${index}`} style={imgStyle} />
-          </figure>
+            <figure>
+              <img
+                className="carousel-image img-fluid"
+                src={`/uploads/${filename}`}  
+                alt={`Image ${index}`}
+                style={imgStyle}
+              />
+
+            </figure>
           </div>
         ))}
+
       </Slider>
 
       {isModalOpen && (
@@ -85,7 +92,7 @@ const Images = () => {
             </span>
             <img
               className="modal-image"
-              src={accommodationImages[selectedImageIndex]}
+              src={`/uploads/${imageFilenames[selectedImageIndex]}`} 
               alt={`Image ${selectedImageIndex}`}
             />
           </div>

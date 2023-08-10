@@ -23,6 +23,7 @@ app.use(cors(corsOptions));
 
 app.use('/api/users', userRoutes); 
 app.use('/api/posts', postRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use((req, res, next) => {
   if (/(\.ico|\.js|\.css|\.jpg|\.png|\.map)$/i.test(req.path)) {
