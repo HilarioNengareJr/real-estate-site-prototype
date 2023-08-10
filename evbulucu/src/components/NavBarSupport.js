@@ -38,7 +38,7 @@ const NavBarSupport = () => {
               </Nav.Link>
               <Nav.Link className="nav-item m-3">
                 <Link>
-                <FontAwesomeIcon icon={faUser}/>
+                Profile
                 </Link>
               </Nav.Link>
             </Nav>

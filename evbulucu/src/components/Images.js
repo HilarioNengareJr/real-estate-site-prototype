@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -61,6 +61,24 @@ const Images = ({ imageFilenames }) => {
     display: 'block',
   };
 
+  const modalContentRef = useRef(null);
+
+  const handleOutsideClick = (event) => {
+    if (modalContentRef.current && !modalContentRef.current.contains(event.target)) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      window.addEventListener('click', handleOutsideClick);
+    }
+
+    return () => {
+      window.removeEventListener('click', handleOutsideClick);
+    };
+  }, [isModalOpen]);
+
   return (
     <div>
       <Slider {...settings}>
@@ -77,21 +95,19 @@ const Images = ({ imageFilenames }) => {
                 alt={`Image ${index}`}
                 style={imgStyle}
               />
-
             </figure>
           </div>
         ))}
-
       </Slider>
 
       {isModalOpen && (
         <div className="modal-overlay">
-          <div className="modal-content">
+          <div className="modal-content" ref={modalContentRef}>
             <span className="close" onClick={closeModal}>
               &times;
             </span>
             <img
-              className="modal-image"
+              className="modal-image "
               src={`/uploads/${imageFilenames[selectedImageIndex]}`} 
               alt={`Image ${selectedImageIndex}`}
             />

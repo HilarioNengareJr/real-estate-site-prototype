@@ -11,6 +11,7 @@ const Gallery = ({ postImages }) => {
     setIsOpen(true);
     setPhotoIndex(index);
   };
+  console.log('Images in Gallery ',postImages);
 
   const closeLightbox = () => {
     setIsOpen(false);
@@ -23,15 +24,15 @@ const Gallery = ({ postImages }) => {
         <div className='col-lg-8 d-lg-flex justify-content-lg-around w-100 col-md-4'>
           {postImages.map((filename, index) => (
             <div key={index} className='gallery-item' onClick={() => openLightbox(index)}>
-              <img src={`/server/uploads/${filename}`} alt={`Image ${index}`} className='w-100 gallery-image' />
+              <img src={`/uploads/${filename}`} alt={`Image ${index}`} className='w-100 gallery-image' />
             </div>
           ))}
         </div>
         {isOpen && (
           <Lightbox
-            mainSrc={`/server/uploads/${postImages[photoIndex]}`}
-            nextSrc={`/server/uploads/${postImages[(photoIndex + 1) % postImages.length]}`}
-            prevSrc={`/server/uploads/${postImages[(photoIndex + postImages.length - 1) % postImages.length]}`}
+            mainSrc={`/uploads/${postImages[photoIndex]}`}
+            nextSrc={`/uploads/${postImages[(photoIndex + 1) % postImages.length]}`}
+            prevSrc={`/uploads/${postImages[(photoIndex + postImages.length - 1) % postImages.length]}`}
             onCloseRequest={closeLightbox}
             onMovePrevRequest={() => setPhotoIndex((photoIndex + postImages.length - 1) % postImages.length)}
             onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % postImages.length)}

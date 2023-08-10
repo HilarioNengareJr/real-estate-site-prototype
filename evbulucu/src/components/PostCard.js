@@ -38,7 +38,7 @@ const PostCard = () => {
                   <div className='border no-border-lg'>
                     <Images imageFilenames={post.image_filenames} />
                   </div>
-                <NavCard Data={post} />
+                  <NavCard Data={post} />
                 <Card.Body>
                   <div className='listing-details-heading font-weight-bold text-center'>
                     <div class='card-price'>

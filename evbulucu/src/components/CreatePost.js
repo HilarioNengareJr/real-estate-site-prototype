@@ -10,8 +10,7 @@ import ImageUploader from 'react-images-upload';
 const CreatePost = () => {
   const navigate = useNavigate();
   const [imageFiles, setImageFiles] = useState([]);
-  const [imagePreviews, setImagePreviews] = useState([]);
-  const [typeOfProperty, setTypeOfProperty] = useState('Apartment');
+  const [typeOfProperty, setTypeOfProperty] = useState('');
   const [price, setPrice] = useState('');
   const [city, setCity] = useState('');
   const [address, setAddress] = useState('');
@@ -19,9 +18,9 @@ const CreatePost = () => {
   const [whatsapp, setWhatsapp] = useState('');
   const [wifiChecked, setWifiChecked] = useState(false);
   const [runningWaterChecked, setRunningWaterChecked] = useState(false);
-  const [beds, setBeds] = useState(1);
-  const [baths, setBaths] = useState(1);
-  const [rooms, setRooms] = useState(1);
+  const [beds, setBeds] = useState(0);
+  const [baths, setBaths] = useState(0);
+  const [rooms, setRooms] = useState(0);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const [details, setDetails] = useState({
