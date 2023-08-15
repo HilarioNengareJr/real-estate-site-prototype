@@ -1,137 +1,79 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './CreatePost.css';
-import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { useParams } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 import NavBar from './NavBar';
-import ImageUploader from 'react-images-upload';
+import './EditPost.css';
 
-const CreatePost = () => {
-  const navigate = useNavigate();
-  const [imageFiles, setImageFiles] = useState([]);
-  const [typeOfProperty, setTypeOfProperty] = useState('');
-  const [price, setPrice] = useState('');
-  const [city, setCity] = useState('');
-  const [address, setAddress] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [whatsapp, setWhatsapp] = useState('');
-  const [wifiChecked, setWifiChecked] = useState(false);
-  const [runningWaterChecked, setRunningWaterChecked] = useState(false);
-  const [beds, setBeds] = useState(0);
-  const [baths, setBaths] = useState(0);
-  const [rooms, setRooms] = useState(0);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-
-  const [details, setDetails] = useState({
+const EditPost = () => {
+  const { postId } = useParams();
+  const [postData, setPostData] = useState({
+    type_of_property: '',
     price: '',
     city: '',
-    busStopDistance: '',
-    market: '',
+    whatsapp: '',
+    phone_number: '',
+    address: '',
+    beds: '',
+    baths: '',
     rooms: '',
+    wifi: false,
+    running_water: false,
     school: '',
+    market: '',
     parking: '',
+    bus_stop: '',
+    restaurant: '',
   });
+
+  useEffect(() => {
+    const fetchPostData = async () => {
+      try {
+        const response = await axios.get(`/api/posts/${postId}`);
+        const postData = response.data;
+        setPostData(postData);
+      } catch (error) {
+        console.error('Error fetching post data for editing', error);
+      }
+    };
+
+    fetchPostData();
+  }, [postId]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setDetails((prevDetails) => ({
-      ...prevDetails,
+    setPostData({
+      ...postData,
       [name]: value,
-    }));
-  };
-
-  const handleDeleteImage = (index) => {
-    const newImageFiles = [...imageFiles];
-    newImageFiles.splice(index, 1);
-    setImageFiles(newImageFiles);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    imageFiles.forEach((file) => {
-      formData.append('images', file);
     });
+  };
 
-    formData.append('type_of_property', typeOfProperty);
-    formData.append('city', city);
-    formData.append('price', price);
-    formData.append('whatsapp', whatsapp);
-    formData.append('phone_number', phoneNumber);
-    formData.append('address', address);
-    formData.append('beds', beds);
-    formData.append('baths', baths);
-    formData.append('rooms', rooms);
-    formData.append('wifi', wifiChecked);
-    formData.append('running_water', runningWaterChecked);
-    formData.append('school', details.school);
-    formData.append('market', details.market);
-    formData.append('parking', details.parking);
-    formData.append('bus_stop', details.busStopDistance);
-    formData.append('restaurant', details.restaurant);
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setPostData({
+      ...postData,
+      [name]: checked,
+    });
+  };
 
-    console.log('Sending data:', formData);
+  const handleEditSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const response = await axios.post('/api/posts/enlist', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log('Response:', response.data);
-      if (response.status === 200) {
-        setShowSuccessModal(true);
-
-        setTimeout(() => {
-          setShowSuccessModal(false);
-          navigate('/listings');
-        }, 2000);
-      } else {
-        console.log('Error submitting data.');
-      }
+      await axios.put(`/api/posts/edit/${postId}`, postData);
+      console.log('Post edited successfully.');
+      setTimeout(() => {
+        setShowSuccessModal(false);
+        navigate('/listings');
+      }, 2000);
     } catch (error) {
-      console.error('Error submitting data:', error);
+      console.error('Error editing post', error);
     }
   };
-
-
 
   return (
     <div className='container'>
       <NavBar />
-
-      <form className='mt-5 border-2 p-2' onSubmit={handleSubmit}>
-        <h3 className='text-center mt-5 p-5'>Upload Images</h3>
-        <div className='mt-3 border-1 p-2'>
-          <ImageUploader
-            withIcon={true}
-            buttonText='Choose images'
-            onChange={(files) => setImageFiles(files)}
-            imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
-            maxFileSize={5242880}
-          />
-          {imageFiles.length > 0 && (
-            <div className='image-previews mt-3'>
-              {imageFiles.map((file, index) => (
-                <div key={index} className='image-preview-container'>
-                  <img
-                    src={URL.createObjectURL(file)}
-                    alt={`Preview ${index}`}
-                    className='image-preview'
-                  />
-                  <button
-                    className='delete-button'
-                    onClick={() => handleDeleteImage(index)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-
-        </div>
+      <form className='mt-3' onSubmit={handleEditSubmit}>
         <hr />
         <h3 className='text-center mt-5 p-5'>Type Details</h3>
         <div className='row justify-content-center border-1 p-2'>
@@ -141,8 +83,8 @@ const CreatePost = () => {
               <select
                 className='form-control'
                 id='type_of_property'
-                value={typeOfProperty}
-                onChange={(e) => setTypeOfProperty(e.target.value)}
+                value={postData.type_of_property}
+                onChange={handleInputChange}
               >
                 <option value='House'>House</option>
                 <option value='Apartment'>Apartment</option>
@@ -158,9 +100,9 @@ const CreatePost = () => {
                 id='price'
                 name='price'
                 title='Enter the price'
-                placeholder='TL500/month'
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                placeholder='100TL/Month'
+                value={postData.price}
+                onChange={handleInputChange}
               />
             </div>
             <div className='form-group my-2'>
@@ -172,8 +114,8 @@ const CreatePost = () => {
                 name='city'
                 title='Enter the City'
                 placeholder='Guzelyurt, Nicosia, Magusa, Girne, Lefke'
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                value={postData.city}
+                onChange={handleInputChange}
               />
             </div>
             <div className='form-group my-2'>
@@ -185,8 +127,8 @@ const CreatePost = () => {
                 name='whatsapp'
                 title='Enter WhatsApp number'
                 placeholder='0 5__ ___ ____'
-                value={whatsapp}
-                onChange={(e) => setWhatsapp(e.target.value)}
+                value={postData.whatsapp}
+                onChange={handleInputChange}
               />
             </div>
             <div className='form-group my-2'>
@@ -198,8 +140,8 @@ const CreatePost = () => {
                 name='phoneNumber'
                 title='Enter phone number'
                 placeholder='0 5__ ___ ____'
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={postData.phone_number}
+                onChange={handleInputChange}
               />
             </div>
             <div className='form-group my-2'>
@@ -212,8 +154,8 @@ const CreatePost = () => {
                 title='Enter property address'
                 aria-describedby='addrInfo'
                 placeholder='123 Street_Name'
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                value={postData.address}
+                onChange={handleInputChange}
               />
               <small id='addrInfo' className='form-text text-muted'>
                 Type address in full to reach more people.
@@ -224,8 +166,8 @@ const CreatePost = () => {
               <select
                 className='form-control'
                 id='beds'
-                value={beds}
-                onChange={(e) => setBeds(e.target.value)}
+                value={postData.beds}
+                onChange={handleInputChange}
               >
                 <option value={0}>0</option>
                 <option value={1}>1</option>
@@ -239,8 +181,8 @@ const CreatePost = () => {
               <select
                 className='form-control'
                 id='baths'
-                value={baths}
-                onChange={(e) => setBaths(e.target.value)}
+                value={postData.baths}
+                onChange={handleInputChange}
               >
                 <option value={0}>0</option>
                 <option value={1}>1</option>
@@ -254,10 +196,10 @@ const CreatePost = () => {
               <select
                 className='form-control'
                 id='rooms'
-                value={rooms}
-                onChange={(e) => setRooms(e.target.value)}
+                value={postData.rooms}
+                onChange={handleInputChange}
               >
-                 <option value={0}>0</option>
+                <option value={0}>0</option>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
                 <option value={3}>3</option>
@@ -274,8 +216,8 @@ const CreatePost = () => {
                 type='checkbox'
                 className='form-check-input'
                 id='wifi'
-                checked={wifiChecked}
-                onChange={(e) => setWifiChecked(e.target.checked)}
+                checked={postData.wifiChecked}
+                onChange={handleCheckboxChange}
               />
               <label className='form-check-label' htmlFor='wifi'>
                 WiFi
@@ -286,8 +228,8 @@ const CreatePost = () => {
                 type='checkbox'
                 className='form-check-input'
                 id='runningWater'
-                checked={runningWaterChecked}
-                onChange={(e) => setRunningWaterChecked(e.target.checked)}
+                checked={postData.running_water}
+                onChange={handleCheckboxChange}
               />
               <label className='form-check-label' htmlFor='runningWater'>
                 Running water
@@ -303,7 +245,7 @@ const CreatePost = () => {
               <select
                 className='form-control'
                 id='school'
-                value={details.school}
+                value={postData.school}
                 onChange={handleInputChange}
                 name='school'
               >
@@ -319,7 +261,7 @@ const CreatePost = () => {
               <select
                 className='form-control'
                 id='market'
-                value={details.market}
+                value={postData.market}
                 onChange={handleInputChange}
                 name='market'
               >
@@ -335,7 +277,7 @@ const CreatePost = () => {
               <select
                 className='form-control'
                 id='parking'
-                value={details.parking}
+                value={postData.parking}
                 onChange={handleInputChange}
                 name='parking'
               >
@@ -348,7 +290,7 @@ const CreatePost = () => {
               <select
                 className='form-control'
                 id='bus-stop'
-                value={details.busStopDistance}
+                value={postData.busStopDistance}
                 onChange={handleInputChange}
                 name='busStopDistance'
               >
@@ -364,7 +306,7 @@ const CreatePost = () => {
               <select
                 className='form-control'
                 id='restaurant'
-                value={details.restaurant}
+                value={postData.restaurant}
                 onChange={handleInputChange}
                 name='restaurant'
               >
@@ -385,38 +327,8 @@ const CreatePost = () => {
           </div>
         </div>
       </form>
-      {showSuccessModal && (
-        <div className='modal show' tabIndex='-1'>
-          <div className='modal-dialog modal-dialog-centered'>
-            <div className='modal-content'>
-              <div className='modal-header'>
-                <h5 className='modal-title'>Success!</h5>
-                <button
-                  type='button'
-                  className='close'
-                  onClick={() => setShowSuccessModal(false)}
-                >
-                  <span>&times;</span>
-                </button>
-              </div>
-              <div className='modal-body'>
-                <p>Data has been submitted successfully.</p>
-              </div>
-              <div className='modal-footer'>
-                <button
-                  type='button'
-                  className='btn btn-primary'
-                  onClick={() => setShowSuccessModal(false)}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
 
-export default CreatePost;
+export default EditPost;

@@ -8,6 +8,7 @@ import { faMapMarkerAlt, faBuilding, faBed, faUser, faPhone } from '@fortawesome
 import Images from './Images';
 import NavCard from './NavCard';
 import './PostCard.css';
+import CardAuthor from './CardAuthor';
 
 const PostCard = () => {
   const [data, setPostData] = useState([]);
@@ -26,19 +27,28 @@ const PostCard = () => {
     fetchData();
   }, []);
 
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/${post.whatsapp}`, '_blank');
+  };
+
+  const handleCallClick = () => {
+    window.open(`tel:${post.phone_number}`, '_blank');
+  };
+
   return (
-    <div className='mt-4 border wide border-2 border-lg-only'>
+    <div className='mt-4 wide'>
       {data.length === 0 ? (
         <div className='vh-100'> No post data yet </div>
       ) : (
         data.map((post) => (
           <Row key={post.id} className='justify-content-center d-flex'>
             <Col xs={12} md={8} lg={12}>
-              <Card className='card border-0 border-bottom rounded-0 shadow no-shadow'>    
-                  <div className='border no-border-lg'>
-                    <Images imageFilenames={post.image_filenames} />
-                  </div>
-                  <NavCard Data={post} />
+              <Card className='card rounded-0 shadow no-shadow border-2 border border-lg-only mb-3'>
+                <CardAuthor post={post} />
+                <div className='border no-border-lg'>
+                  <Images imageFilenames={post.image_filenames} />
+                </div>
+                <NavCard Data={post} />
                 <Card.Body>
                   <div className='listing-details-heading font-weight-bold text-center'>
                     <div class='card-price'>
@@ -68,19 +78,19 @@ const PostCard = () => {
                   </div>
 
                   <div className='d-flex justify-content-center'>
-                    <button className='btn btn-primary m-2'>
+                    <button className='btn btn-primary m-2' onClick={handleWhatsAppClick}>
                       <span className='m-1'>
                         <FontAwesomeIcon icon={faUser} className='button-icon' />
                       </span>
                       WhatsApp
                     </button>
-                    <button className='btn btn-outline-primary m-2'>
+                    <button className='btn btn-outline-primary m-2' onClick={handleCallClick}>
                       <span className='m-1'>
                         <FontAwesomeIcon icon={faPhone} className='button-icon' />
                       </span>
                       Call
                     </button>
-                  </div>
+                    </div>
                 </Card.Body>
               </Card>
             </Col>

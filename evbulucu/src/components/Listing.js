@@ -1,16 +1,18 @@
 import React from 'react';
 import PostCard from './PostCard';
-import NavBarOnPost from './NavBarOnPost';
+import NavBar from './NavBar';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 import './Listing.css';
+
 
 const Listing = () => {
   return (
     <div className="container">
       <div className="mb-5">
-        <NavBarOnPost />
+        <NavBar />
       </div>
+     
       <div className="row mt-5 ">
         <div className="col-md-8">
           <div className="mt-4">

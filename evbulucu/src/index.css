@@ -3,11 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@600;800&family=Bruno+Ace+SC&family=Dosis:wght@800&family=Kaushan+Script&family=Urbanist&display=swap');
 
 :root {
-
-  /**
-   * colors
-   */
-
   --dark-jungle-green: hsl(188, 63%, 7%);
   --prussian-blue: hsl(200, 69%, 14%);
   --raisin-black-1: hsl(227, 29%, 13%);

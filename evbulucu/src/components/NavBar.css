@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Dosis:wght@800&family=Kaushan+Script&display=swap');
 
+.nav-item.active {
+  background-color: var(--dark-jungle-green) !important;
+  color: var(--yellow-green)!important;
+  border-radius: 25px;
+}
+
 @media screen and (max-width: 768px) {
-
-
   .navbar{
     height: 120px !important;
   }
@@ -20,23 +24,9 @@
 .navbar-collapse{
   display: none;
 }
-/* Styles for screens with a minimum width of 769px and a maximum width of 1024px */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
- 
-
-  .no-display {
-    display: none;
-  }
-
-  .show {
-   display:none;
-  }
-}
-
-
 
 .navbar {
-  height: 5.625em;
+  height: 100px !important;
   box-shadow: 0 16px 32px hsla(188, 63%, 7%, 0.1) !important;
 }
 
@@ -72,7 +62,7 @@ a:hover{
 
 
 .line {
-  border-top: 1px solid var(--orange-soda) !important;
+  border-top: 1px solid var(--orange-soda)!important;
   margin: 2px;
 }
 
@@ -116,7 +106,12 @@ a{
   display:none;
 }
 
-
+@media only screen and (min-width:992px) {
+  .this .form-control {
+    width: 400px;
+    height: 50px;
+  }
+}
 
 
 
