@@ -16,10 +16,10 @@ app.use(express.static(path.join(__dirname, '../evbulucu/build')));
 
 const cors = require('cors');
 const corsOptions = {
+  AccessControlAllowOrigin: '*',
   origin: 'http://localhost:3000',
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',
 };
 
 app.use(cors(corsOptions));
