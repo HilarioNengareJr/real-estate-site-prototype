@@ -95,9 +95,11 @@ const NavBar = () => {
                 </Nav.Link>
               ) :
                 (
-                  <Nav.Link className="nav-item w-100 m-3 text-center no-wrap" onClick={handleLoginToggle} href="#">
-                    Profile
-                  </Nav.Link>
+                  
+                <Nav.Link className="nav-item m-3" onClick={handleSignupToggle}>
+                  Register
+                </Nav.Link>
+             
                 )
 
               }
@@ -105,10 +107,8 @@ const NavBar = () => {
                 <Nav.Link className={`nav-item w-100 m-3 d-flex justify-content-center no-wrap  ${location.pathname === '/create-post' ? 'active' : ''}`} href="#">
                   <Link to="/create-post">Enlist</Link>
                 </Nav.Link>
-              ) : (
-                <Nav.Link className="nav-item w-100 m-3 d-flex justify-content-center no-wrap" onClick={handleLoginToggle} active>
-                  Enlist
-                </Nav.Link>
+              ) : ( 
+                <span></span>
               )}
               <Form inline className="m-3 this">
               <div className="position-relative">
@@ -118,11 +118,6 @@ const NavBar = () => {
                 </span>
               </div>
             </Form>
-              {!isLoggedIn && (
-                <Nav.Link className="nav-item m-3" onClick={handleSignupToggle}>
-                  Register
-                </Nav.Link>
-              )}
             </Nav>
             <div className="no-display row">
               <div className="col-6">
