@@ -44,7 +44,7 @@ const UserProfile = () => {
     return (
         <div className='container-fluid'>
             <NavBar />
-            <div className='mt-4  wide  mb-4'>
+            <div className='mt-4  wide  mb-4 p-4'>
                 <hr />
                 {listings.length === 0 ? (
                     <div className='vh-100'> No post data yet </div>
@@ -54,7 +54,7 @@ const UserProfile = () => {
                             <Col xs={12} md={12} lg={6}>
                                 <Card className='card rounded-0 shadow no-shadow border-2 border border-lg-only mb-3'>
                                     <small className='text-muted m-2'>
-                                        Enlisted on {listing.created_at}
+                                        Enlisted on {new Date(listing.created_at).toLocaleString()}
                                     </small>
 
                                     <div className='border no-border-lg'>
@@ -103,12 +103,10 @@ const UserProfile = () => {
                                         </div>
 
                                         <div className='d-flex justify-content-center'>
-                                            <Link to={`/edit/${listing.id}`}> <button className='btn btn-secondary text-white m-2'>
-
+                                            <Link to={`/edit/${listing.id}`}> <button className='btn btn-secondary text-white m-2' title='Can only change details not images!'>
                                                 Edit
-
                                             </button> </Link>
-                                            <button className='btn btn-danger text-white m-2' onClick={handleDeleteListing}>
+                                            <button className='btn btn-danger text-white m-2' title='Remove This Post' onClick={handleDeleteListing}>
                                                 Delete
                                             </button>
                                         </div>

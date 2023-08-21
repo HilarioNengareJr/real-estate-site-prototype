@@ -29,7 +29,7 @@ const Login = () => {
         setModalTitle('Login Successful');
         setModalMessage(`Welcome , ${user.username}!`);
         setShowModal(true);
-        navigate('/');
+        navigate('/listings');
       } else {
         setModalTitle('Login Failed');
         setModalMessage(message);
@@ -42,7 +42,6 @@ const Login = () => {
     }
   };
 
-  // Function to close the modal
   const handleCloseModal = () => {
     setShowModal(false);
   };

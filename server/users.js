@@ -57,10 +57,8 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Logout endpoint
 router.post('/logout', (req, res) => {
   try {
-    // Clear the token cookie to log out the user
     res.clearCookie('token');
     res.status(200).json({ success: true, message: 'Logged out successfully' });
   } catch (err) {
@@ -88,7 +86,6 @@ const authenticateToken = (req, res, next) => {
       }
 
       req.user = user.rows[0];
-      console.log(req.user.id);
       next();
     } catch (err) {
       res.status(400).json({ success: false, error: err.message });
@@ -100,9 +97,7 @@ router.get('/check-auth', authenticateToken, (req, res) => {
   res.status(200).json({ success: true, user: req.user });
 });
 
-
-
 module.exports = { 
-  userRoutes:router, 
-  authenticateToken:authenticateToken
+  userRoutes: router, 
+  authenticateToken: authenticateToken,
 };

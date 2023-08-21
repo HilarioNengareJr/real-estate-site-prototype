@@ -16,7 +16,7 @@ const Hero = () => {
         <div className="row d-flex justify-content-center">
           <div className="d-flex justify-content-center col-md-12">
             <div className="mb-2 typed">
-              <h1 className="display-4 text-white mt-5" style={{ textShadow: '2px 2px 5px rgba(0,0,0,0.1)' }}>
+              <h1 className="display-4 typed-string text-white mt-5" style={{ textShadow: '2px 2px 5px rgba(0,0,0,0.1)' }}>
                 <TypedComponent strings={strings} />
               </h1>
             </div>

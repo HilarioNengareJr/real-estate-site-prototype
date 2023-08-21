@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Dosis:wght@800&family=Kaushan+Script&display=swap');
-
 .nav-item.active {
-  background-color: var(--dark-jungle-green) !important;
-  color: var(--yellow-green)!important;
-  border-radius: 25px;
+  color: #008080 !important;
+}
+
+.new-bubble {
+  color:#fff;
+  position: absolute;
+}
+
+.sign-in{
+  padding-inline-end: 10px !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -113,6 +118,9 @@ a{
   }
 }
 
+.sign-in{
+  width:  75%;
+}
 
 
 

@@ -25,7 +25,7 @@
   
   @media screen and (max-width: 768px) {
 	.hero {
-	  height: 600px !important; /* Adjust the height as per your requirement */
+	  height: 600px !important; 
 	}
   }
   
@@ -37,7 +37,6 @@
 	  height: 10px;
 	  width: 100%;
 	  max-width: 600px;
-	  /* Set a maximum width for larger screens */
 	  box-sizing: border-box;
 	}
   
@@ -48,7 +47,6 @@
 	.search-icon {
 	  color: rgb(205, 201, 201) !important;
 	  display: block;
-	  /* Add this to make the button a block-level element */
 	  margin: 0 5%;
 	}
   }
@@ -60,7 +58,6 @@
 	  height: 50px;
 	  width: 100%;
 	  max-width: 600px;
-	  /* Set a maximum width for larger screens */
 	  box-sizing: border-box;
 	}
   
@@ -82,7 +79,6 @@
 	height: 50px;
 	width: 100%;
 	max-width: 600px;
-	/* Set a maximum width for larger screens */
 	box-sizing: border-box;
   }
   

@@ -72,30 +72,33 @@ const NavBar = () => {
 
   return (
     <div>
-      <Navbar id="navbar" className="navbar fixed-top bg-dark navbar-dark" expand="lg">
+      <Navbar id="navbar" className="navbar fixed-top bg-dark navbar-dark p-lg-2" expand="lg">
         <Container fluid>
-          <Navbar.Brand className={`ml-auto brand-font  ${location.pathname === '/' ? 'active' : ''}`}>
+        <Link to="/"><Navbar.Brand className={`ml-auto brand-font  ${location.pathname === '/' ? 'active' : ''}`}>
             Student Rental
             <div className="line"></div>
           </Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="navbarNav" onClick={handleMenuToggle} />
           <Navbar.Collapse id="navbarNav">
             <Nav className="mx-auto">
+            {! isLoggedIn ? (
               <Nav.Link className={`nav-item m-3  ${location.pathname === '/' ? 'active' : ''}`}>
                 <Link to="/">Home</Link>
-              </Nav.Link>
-              <Nav.Link className={`nav-item m-3  ${location.pathname === '/listings' ? 'active' : ''}`}>
-                <Link to="listings">Listings</Link>
+              </Nav.Link> ) : (
+                <span></span>
+              ) }
+              <Nav.Link className={`nav-item m-3 listings  ${location.pathname === '/listings' ? 'active' : ''}`}>
+                <Link to="/listings">Listings<sup className='new-buble bg-primary rounded-pill'>New</sup> </Link>
               </Nav.Link>
               {isLoggedIn ? (
                 <Nav.Link className={`nav-item w-100 m-3 text-center no-wrap  ${location.pathname === '/profile' ? 'active' : ''}`} href="#" >
                   <Link to='/profile'>
-                    Profile
+                    Profile<sup className='new-buble bg-secondary rounded-pill'>Edit</sup>
                   </Link>
                 </Nav.Link>
               ) :
                 (
-                  
                 <Nav.Link className="nav-item m-3" onClick={handleSignupToggle}>
                   Register
                 </Nav.Link>
@@ -159,7 +162,7 @@ const NavBar = () => {
               <Link to="/create-post">Enlist</Link>
             </Nav.Link>
             <Nav.Link onClick={handleMenuModalClose}>
-              <Link to="/listings">Listings</Link>
+              <Link to="/listings">Listings<sup className='new-bubble bg-primary rounded-pill'>New</sup></Link>
             </Nav.Link>
             {!isLoggedIn && (
               <Nav.Link href="/register" onClick={handleMenuModalClose}>
@@ -183,7 +186,7 @@ const NavBar = () => {
         </Modal.Footer>
       </Modal>
 
-      <Modal className="text-center d-flex justify-content-center w-100" show={showLoginModal} onHide={handleLoginModalClose} centered>
+      <Modal className="text-center d-flex justify-content-center w-100 pb-3" show={showLoginModal} onHide={handleLoginModalClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Log In</Modal.Title>
         </Modal.Header>
@@ -194,7 +197,7 @@ const NavBar = () => {
         </Modal.Body>
       </Modal>
 
-      <Modal className="text-center d-flex justify-content-center w-100" show={showSignupModal} onHide={handleSignupModalClose} centered>
+      <Modal className="text-center d-flex justify-content-center w-100 pb-3" show={showSignupModal} onHide={handleSignupModalClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Sign UP</Modal.Title>
         </Modal.Header>
